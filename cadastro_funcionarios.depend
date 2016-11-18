@@ -19,3 +19,16 @@
 	<stdio.h>
 	<stdlib.h>
 
+1479477837 source:c:\users\jefferson\desktop\apcc\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"input_data.h"
+
+1479477837 c:\users\jefferson\desktop\apcc\input_data.h
+	"file.h"
+
+1479477837 c:\users\jefferson\desktop\apcc\file.h
+	<stdio.h>
+	<stdlib.h>
+

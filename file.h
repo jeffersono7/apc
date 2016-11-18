@@ -115,8 +115,10 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
     //std::thread first (status=abre_arquivo, arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a'); // Verificar se ordem de flags está certa.
     status=abre_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a');
 
+    //variavel para o for, porque windows é outro nível #g++
+    int cont=0;
 
-    for(int cont=0;;cont++) // verifica se abriu.
+    for(cont=0;;cont++) // verifica se abriu.
     {
         system("cls");
         printf("\n\n\t\tAbrindo arquivo!"); //status de abertura.
@@ -200,7 +202,10 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
 
     status=abre_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a');
 
-    for(int cont=0;;cont++) // verifica se abriu.
+    //variavel para o for, #windows_zoeira
+    int cont=0;
+
+    for(cont=0;;cont++) // verifica se abriu.
     {
         system("cls");
         printf("\n\n\t\tAbrindo arquivo!"); //status de abertura.
