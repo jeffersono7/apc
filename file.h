@@ -225,15 +225,14 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
 
     int temp_posicao;
 
-    //busca posição no arquivo e gravar na struct
-
-    //codigo
-    fseek(arq_codigo,sizeof("%d %d"),SEEK_SET);
-
+    //table codigo
+    fseek(arq_codigo,posicao*sizeof("%d %d \n"),SEEK_SET);
+    //--
     fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
 
-    //nome
-    fseek(arq_nome,posicao*sizeof("%d %s"),SEEK_SET); //arrumar estrutura do sizeof
+    //table nome
+    fseek(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET); //arrumar estrutura do sizeof
+
 
 
     //fscanf(arq_codigo,)
