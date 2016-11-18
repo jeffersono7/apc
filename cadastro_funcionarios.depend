@@ -6,7 +6,7 @@
 
 1478807642 
 
-1479334635 source:/root/trabalho_apc/apc/main.c
+1479465183 source:/root/trabalho_apc/apc/main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
@@ -15,7 +15,7 @@
 1479315362 /root/trabalho_apc/apc/input_data.h
 	"file.h"
 
-1479339712 /root/trabalho_apc/apc/file.h
+1479339850 /root/trabalho_apc/apc/file.h
 	<stdio.h>
 	<stdlib.h>
 

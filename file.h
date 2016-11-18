@@ -228,7 +228,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
     fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
 
     //nome
-    fseek(arq_nome,sizeof("%d %s"),SEEK_SET); //arrumar estrutura do sizeof
+    fseek(arq_nome,posicao*sizeof("%d %s"),SEEK_SET); //arrumar estrutura do sizeof
 
 
     //fscanf(arq_codigo,)

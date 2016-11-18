@@ -92,9 +92,8 @@ int menu()
         cabecalho();
         printf("******************************************\n");
         printf("******** 1 Inserir funcionários **********\n");
-        printf("******** 2 Pesquisar            **********\n");
-        printf("******** 3 Relatório individual **********\n");
-        printf("******** 4 Relatório geral      **********\n");
+        printf("******** 2 Relatório individual **********\n");
+        printf("******** 3 Relatório geral      **********\n");
         printf("******** 0 Sair                 **********\n");
         printf("******************************************\n\n");
         printf("Escolha uma opção: \n");
