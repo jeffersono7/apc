@@ -226,15 +226,53 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
     int temp_posicao;
 
     //table codigo
-    fseek(arq_codigo,posicao*sizeof("%d %d \n"),SEEK_SET);
+    fseek(arq_codigo,posicao*sizeof("%d %d \n"),SEEK_SET); //verificar sizeof
     //--
     fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
 
     //table nome
-    fseek(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET); //arrumar estrutura do sizeof
+    fseek(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
+    //--
+    fscanf(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
 
+    //table idade
+    fseek(arq_idade,posicao*sizeof("%d %d \n"),SEEK_SET);
+    //--
+    fscanf(arq_idade,posicao*sizeof("%d %d \n"),SEEK_SET);
 
+    //table dependentes
+    fseek(arq_dependentes,posicao*sizeof("%d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
+    //--
+    fscanf(arq_dependentes,posicao*sizeof("%d %d \n"),SEEK_SET);
 
-    //fscanf(arq_codigo,)
+    //table nivel
+    fseek(arq_nivel,posicao*sizeof("%d %c \n"),SEEK_SET); //arrumar estrutura do sizeof
+    //--
+    fscanf(arq_nivel,posicao*sizeof("%d %c \n"),SEEK_SET);
+
+    //table hrEntrada
+    fseek(arq_hrEntrada,posicao*sizeof("%d %d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
+    //--
+    fscanf(arq_hrEntrada,posicao*sizeof("%d %d %d \n"),SEEK_SET);
+
+    //table hrSaida
+    fseek(arq_hrSaida,posicao*sizeof("%d %d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
+    //--
+    fscanf(arq_hrSaida,posicao*sizeof("%d %d %d \n"),SEEK_SET);
+
+    //table horasExtras
+    fseek(arq_horasExtras,posicao*sizeof("%d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
+    //--
+    fscanf(arq_horasExtras,posicao*sizeof("%d %d \n"),SEEK_SET);
+
+    //table salario
+    fseek(arq_salario,posicao*sizeof("%d %f \n"),SEEK_SET); //arrumar estrutura do sizeof
+    //--
+    fscanf(arq_salario,posicao*sizeof("%d %f \n"),SEEK_SET);
+
+    //fecha arquivo
+    fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
+
+    // fim da função
 }
 

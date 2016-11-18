@@ -25,6 +25,7 @@ int main()
     setlocale(LC_ALL, "portuguese");
 
     int opcao;
+    struct funcionario entrada_funcionario;
     do
     {
         opcao=menu();
@@ -36,6 +37,7 @@ int main()
         switch(opcao)
         {
             case 1:
+                entrada_dados(&entrada_funcionario);
                 break;
 
             default:
