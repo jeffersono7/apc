@@ -218,7 +218,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
 
     // desenvolver, capturar nos arquivos os dados pedidos e gravar em um objeto struct temporario (temp_ler)
 
-    int temp_posicao;
+    int temp_ler;
 
     //busca posição no arquivo e gravar na struct
 
