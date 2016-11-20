@@ -2,6 +2,7 @@
 
 void entrada_dados(struct funcionario *func_input)
 {
+
     do{
         system("cls");
 
@@ -24,18 +25,18 @@ void entrada_dados(struct funcionario *func_input)
         scanf("%d", &func_input->dependentes);
 
         fflush(stdin);
-        printf("\nInsira o seu nível (B, M, S)\n");
-        printf("\tB = Básico\n");
-        printf("\tM = Médio\n");
-        printf("\tS = Superior\n");
-        gets(func_input->nivel);
+        printf("\nInsira o seu nível (b, m, s)\n");
+        printf("\tb = Básico\n");
+        printf("\tm = Médio\n");
+        printf("\ts = Superior\n");
+        gets(&func_input->nivel);
 
         fflush(stdin);
-        printf("\nInsira a hora de entrada: (Digite as horas e minutos separadamente e seguido de um enter)");
+        printf("\nInsira a hora de entrada (Digite as horas e minutos separadamente e seguido de um enter): ");
         scanf("%d %d", &func_input->hrEntrada.hora, &func_input->hrEntrada.minuto);
 
         fflush(stdin);
-        printf("\nInsira a hora de saida: (Digite as horas e minutos separadamente e seguido de um enter)");
+        printf("\nInsira a hora de saida (Digite as horas e minutos separadamente e seguido de um enter): ");
         scanf("%d %d", &func_input->hrSaida.hora, &func_input->hrSaida.minuto);
 
         fflush(stdin);

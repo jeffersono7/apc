@@ -1,39 +1,12 @@
 //#pragma optimize (O3)  //Para ficar rápido
 //#pragma -std=c++14 //Para usar compilador mais recente
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
+
 //#include "file.h"
 #include "input_data.h"
 
 //#include <thread> //Para usar threads
 
-/*struct data
-{
-    int dia;
-    int mes;
-    int ano;
-};
-
-struct hora
-{
-    int hora;
-    int minuto;
-};
-
-struct funcionario
-{
-    int codigo;
-    char nome[30];
-    struct data idade;
-    int dependentes;
-    char nivel; // B-basico,M-media,S-superior
-    struct hora hrEntrada;
-    struct hora hrSaida;
-    int horasExtras;
-    float salario;
-};*/
 
 // Declarações das funções a serem usadas
 int menu(); //maxwell
@@ -46,10 +19,14 @@ int relatorio();//wesley usar a funcao pesquisa
 
 int main()
 {
+    //teste (apagar)
+    FILE *temp_qualquer;
+    temp_qualquer=fopen("codigo.txt",'a');
     //configura utf-8
-    setlocale(LC_ALL, "portuguese");
+    setlocale(LC_ALL,"portuguese");
 
     int opcao;
+    struct funcionario entrada_funcionario;
     do
     {
         opcao=menu();
@@ -61,6 +38,7 @@ int main()
         switch(opcao)
         {
             case 1:
+                entrada_dados(&entrada_funcionario);
                 break;
 
             default:
