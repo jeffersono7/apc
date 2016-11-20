@@ -240,7 +240,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
     //table codigo
     fseek(arq_codigo,posicao*sizeof("%d %d \n"),SEEK_SET); //verificar sizeof
     //--
-    fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
+    fscanf(arq_codigo,"%d %d \n",posicao*sizeof("%d %d \n"),func_ler->codigo);
 
     //table nome
     fseek(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);

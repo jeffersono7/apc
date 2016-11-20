@@ -4,13 +4,17 @@
 	<stdlib.h>
 	<locale.h>
 
-1478807642 
+1479655011 
+
+1479652264 
 
 1479465183 source:/root/trabalho_apc/apc/main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	"input_data.h"
+
+1479654873 a.h"
 
 1479315362 /root/trabalho_apc/apc/input_data.h
 	"file.h"
@@ -39,6 +43,17 @@
 	"file.h"
 
 1479655011 c:\users\jefferson\desktop\apc_clone\file.h
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
+1479644799 source:/root/trabalho_apc/apc/main.c
+	"input_data.h"
+
+1479644799 /root/trabalho_apc/apc/input_data.h
+	"file.h"
+
+1479644799 /root/trabalho_apc/apc/file.h
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
