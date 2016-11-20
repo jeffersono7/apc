@@ -32,16 +32,14 @@
 	<stdio.h>
 	<stdlib.h>
 
-1479480854 source:c:\users\jefferson\desktop\apc_clone\main.c
+1479654873 source:c:\users\jefferson\desktop\apc_clone\main.c
+	"input_data.h"
+
+1479652264 c:\users\jefferson\desktop\apc_clone\input_data.h
+	"file.h"
+
+1479655011 c:\users\jefferson\desktop\apc_clone\file.h
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
-	"input_data.h"
-
-1479481686 c:\users\jefferson\desktop\apc_clone\input_data.h
-	"file.h"
-
-1479481783 c:\users\jefferson\desktop\apc_clone\file.h
-	<stdio.h>
-	<stdlib.h>
 

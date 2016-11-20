@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 //#include <thread>
 
 //file.h
@@ -39,8 +40,8 @@ struct funcionario
 
 long int posicao=0;
 
-int abre_arquivo(FILE *arq_codigo,FILE*arq_nome,FILE *arq_idade,FILE *arq_dependentes,FILE *arq_nivel,FILE *arq_hrEntrada,FILE *arq_hrSaida,
-                FILE *arq_horasExtras,FILE *arq_salario, char modo) //return 0 para sucesso, >0 para falha; modo=a-append,w-write,r-read
+int abre_arquivo(FILE **arq_codigo,FILE**arq_nome,FILE **arq_idade,FILE **arq_dependentes,FILE **arq_nivel,FILE **arq_hrEntrada,FILE **arq_hrSaida,
+                FILE **arq_horasExtras,FILE **arq_salario, char modo) //return 0 para sucesso, >0 para falha; modo=a-append,w-write,r-read
 
 {
     //deixa ponteiros nulos
@@ -55,23 +56,31 @@ int abre_arquivo(FILE *arq_codigo,FILE*arq_nome,FILE *arq_idade,FILE *arq_depend
     arq_salario=0;
     modo='r';
 
-    if((arq_codigo=fopen("codigo.txt",modo))!=0)
+    printf("\nna funcao abre_arquivo\n\n");
+    fflush(stdin);
+    getchar();
+    //temp teste
+
+    if(*arq_codigo=fopen("codigo.txt",'w')!=0)
     {
-        if((arq_nome=fopen("nome.txt",modo))!=0)
+        printf("\ncodigo\n");
+        fflush(stdin);
+        getchar();
+        if((*arq_nome=fopen("nome.txt",modo))!=0)
         {
-            if((arq_idade=fopen("idade.txt",modo))!=0)
+            if((*arq_idade=fopen("idade.txt",modo))!=0)
             {
-                if((arq_dependentes=fopen("dependentes.txt",modo))!=0)
+                if((*arq_dependentes=fopen("dependentes.txt",modo))!=0)
                 {
-                    if((arq_nivel=fopen("nivel.txt",modo))!=0)
+                    if((*arq_nivel=fopen("nivel.txt",modo))!=0)
                     {
-                        if((arq_hrEntrada=fopen("hrEntrada.txt",modo))!=0)
+                        if((*arq_hrEntrada=fopen("hrEntrada.txt",modo))!=0)
                         {
-                            if((arq_hrSaida=fopen("hrSaida.txt",modo))!=0)
+                            if((*arq_hrSaida=fopen("hrSaida.txt",modo))!=0)
                             {
-                                if((arq_horasExtras=fopen("horasExtras.txt",modo))!=0)
+                                if((*arq_horasExtras=fopen("horasExtras.txt",modo))!=0)
                                 {
-                                    if((arq_salario=fopen("salario.txt",modo))!=0)
+                                    if((*arq_salario=fopen("salario.txt",modo))!=0)
                                     {
                                         return 0;
                                     }
@@ -113,8 +122,11 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
 
     // Abre arquivo usando thread
     //std::thread first (status=abre_arquivo, arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a'); // Verificar se ordem de flags está certa.
-    status=abre_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a');
-
+    status=abre_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario,'a');
+    //aqui erro acima
+    printf("\n\n\oiofdisfsdafhalsk");
+    fflush(stdin);
+    getchar();
     //variavel para o for, porque windows é outro nível #g++
     int cont=0;
 

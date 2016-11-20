@@ -1,9 +1,7 @@
 //#pragma optimize (O3)  //Para ficar rápido
 //#pragma -std=c++14 //Para usar compilador mais recente
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
+
 //#include "file.h"
 #include "input_data.h"
 
@@ -21,8 +19,11 @@ int relatorio();//wesley usar a funcao pesquisa
 
 int main()
 {
+    //teste (apagar)
+    FILE *temp_qualquer;
+    temp_qualquer=fopen("codigo.txt",'a');
     //configura utf-8
-    setlocale(LC_ALL, "portuguese");
+    setlocale(LC_ALL,"portuguese");
 
     int opcao;
     struct funcionario entrada_funcionario;
