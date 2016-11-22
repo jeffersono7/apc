@@ -19,9 +19,6 @@ int relatorio();//wesley usar a funcao pesquisa
 
 int main()
 {
-    //teste (apagar)
-    FILE *temp_qualquer;
-    temp_qualquer=fopen("codigo.txt",'a');
     //configura utf-8
     setlocale(LC_ALL,"portuguese");
 

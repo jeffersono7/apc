@@ -40,47 +40,28 @@ struct funcionario
 
 long int posicao=0;
 
-int abre_arquivo(FILE **arq_codigo,FILE**arq_nome,FILE **arq_idade,FILE **arq_dependentes,FILE **arq_nivel,FILE **arq_hrEntrada,FILE **arq_hrSaida,
-                FILE **arq_horasExtras,FILE **arq_salario, char modo) //return 0 para sucesso, >0 para falha; modo=a-append,w-write,r-read
+int abre_arquivo(FILE *arq_codigo,FILE *arq_nome,FILE *arq_idade,FILE *arq_dependentes,FILE *arq_nivel,FILE *arq_hrEntrada,FILE *arq_hrSaida,
+                FILE *arq_horasExtras,FILE *arq_salario, char modo[]) //return 0 para sucesso, >0 para falha; modo=a-append,w-write,r-read
 
 {
-    //deixa ponteiros nulos
-    arq_codigo=0;
-    arq_nome=0;
-    arq_idade=0;
-    arq_dependentes=0;
-    arq_nivel=0;
-    arq_hrEntrada=0;
-    arq_hrSaida=0;
-    arq_horasExtras=0;
-    arq_salario=0;
-    modo='r';
 
-    printf("\nna funcao abre_arquivo\n\n");
-    fflush(stdin);
-    getchar();
-    //temp teste
-
-    if(*arq_codigo=fopen("codigo.txt",'w')!=0)
+    if(arq_codigo=fopen("data\\codigo.txt",modo)!=0)
     {
-        printf("\ncodigo\n");
-        fflush(stdin);
-        getchar();
-        if((*arq_nome=fopen("nome.txt",modo))!=0)
+        if((arq_nome=fopen("data\\nome.txt",modo))!=0)
         {
-            if((*arq_idade=fopen("idade.txt",modo))!=0)
+            if((arq_idade=fopen("data\\idade.txt",modo))!=0)
             {
-                if((*arq_dependentes=fopen("dependentes.txt",modo))!=0)
+                if((arq_dependentes=fopen("data\\dependentes.txt",modo))!=0)
                 {
-                    if((*arq_nivel=fopen("nivel.txt",modo))!=0)
+                    if((arq_nivel=fopen("data\\nivel.txt",modo))!=0)
                     {
-                        if((*arq_hrEntrada=fopen("hrEntrada.txt",modo))!=0)
+                        if((arq_hrEntrada=fopen("data\\hrEntrada.txt",modo))!=0)
                         {
-                            if((*arq_hrSaida=fopen("hrSaida.txt",modo))!=0)
+                            if((arq_hrSaida=fopen("data\\hrSaida.txt",modo))!=0)
                             {
-                                if((*arq_horasExtras=fopen("horasExtras.txt",modo))!=0)
+                                if((arq_horasExtras=fopen("data\\horasExtras.txt",modo))!=0)
                                 {
-                                    if((*arq_salario=fopen("salario.txt",modo))!=0)
+                                    if((arq_salario=fopen("data\\salario.txt",modo))!=0)
                                     {
                                         return 0;
                                     }
@@ -122,11 +103,9 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
 
     // Abre arquivo usando thread
     //std::thread first (status=abre_arquivo, arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a'); // Verificar se ordem de flags está certa.
-    status=abre_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario,'a');
-    //aqui erro acima
-    printf("\n\n\oiofdisfsdafhalsk");
-    fflush(stdin);
-    getchar();
+    status=abre_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario,"a");
+
+
     //variavel para o for, porque windows é outro nível #g++
     int cont=0;
 
@@ -212,7 +191,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
     FILE *arq_codigo,*arq_nome,*arq_idade,*arq_dependentes,*arq_nivel,*arq_hrEntrada,*arq_hrSaida,*arq_horasExtras,*arq_salario;
     //std::thread first (status=abre_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'r');
 
-    status=abre_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a');
+    status=abre_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario,"r");
 
     //variavel para o for, #windows_zoeira
     int cont=0;
@@ -240,47 +219,61 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
     //table codigo
     fseek(arq_codigo,posicao*sizeof("%d %d \n"),SEEK_SET); //verificar sizeof
     //--
-    fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
+    fscanf(arq_codigo,"%d %d \n", &func_ler->codigo);
+    //--fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
 
     //table nome
     fseek(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
     //--
-    fscanf(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
+    fscanf(arq_nome,"%d %s \n", &func_ler->nome);
+    //--fscanf(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
 
     //table idade
     fseek(arq_idade,posicao*sizeof("%d %d \n"),SEEK_SET);
     //--
-    fscanf(arq_idade,posicao*sizeof("%d %d \n"),SEEK_SET);
+    fscanf(arq_idade,"%d %d %d %d \n",&func_ler->idade.dia,&func_ler->idade.mes,&func_ler->idade.ano);
+    //--fscanf(arq_idade,posicao*sizeof("%d %d \n"),SEEK_SET);
 
     //table dependentes
     fseek(arq_dependentes,posicao*sizeof("%d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_dependentes,posicao*sizeof("%d %d \n"),SEEK_SET);
+
+    fscanf(arq_dependentes,"%d %d \n", &func_ler->dependentes);
+    //--fscanf(arq_dependentes,posicao*sizeof("%d %d \n"),SEEK_SET);
 
     //table nivel
     fseek(arq_nivel,posicao*sizeof("%d %c \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_nivel,posicao*sizeof("%d %c \n"),SEEK_SET);
+    fscanf(arq_nivel,"%d %c \n", &func_ler->nivel);
+    //--fscanf(arq_nivel,posicao*sizeof("%d %c \n"),SEEK_SET);
 
     //table hrEntrada
     fseek(arq_hrEntrada,posicao*sizeof("%d %d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_hrEntrada,posicao*sizeof("%d %d %d \n"),SEEK_SET);
+    fscanf(arq_hrEntrada,"%d %d %d \n", &func_ler->hrEntrada.hora,&func_ler->hrEntrada.minuto);
+
+    //--fscanf(arq_hrEntrada,posicao*sizeof("%d %d %d \n"),SEEK_SET);
 
     //table hrSaida
     fseek(arq_hrSaida,posicao*sizeof("%d %d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_hrSaida,posicao*sizeof("%d %d %d \n"),SEEK_SET);
+    fscanf(arq_hrSaida,"%d %d %d \n", &func_ler->hrSaida.hora,&func_ler->hrSaida.minuto);
+
+    //--fscanf(arq_hrSaida,posicao*sizeof("%d %d %d \n"),SEEK_SET);
 
     //table horasExtras
     fseek(arq_horasExtras,posicao*sizeof("%d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_horasExtras,posicao*sizeof("%d %d \n"),SEEK_SET);
+    fscanf(arq_horasExtras,"%d %d \n",&func_ler->horasExtras);
+    //--fscanf(arq_horasExtras,posicao*sizeof("%d %d \n"),SEEK_SET);
 
     //table salario
     fseek(arq_salario,posicao*sizeof("%d %f \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
+    fscanf(arq_salario,"%d %f \n",&func_ler->salario);
     fscanf(arq_salario,posicao*sizeof("%d %f \n"),SEEK_SET);
+
+    //  ***  Fim de leitura ***
 
     //fecha arquivo
     fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
