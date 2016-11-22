@@ -214,13 +214,18 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
 
     // desenvolver, capturar nos arquivos os dados pedidos e gravar em um objeto struct temporario (temp_ler)
 
-    int temp_posicao;
+    int temp_ler;
 
     //table codigo
     fseek(arq_codigo,posicao*sizeof("%d %d \n"),SEEK_SET); //verificar sizeof
+<<<<<<< HEAD
     //--
     fscanf(arq_codigo,"%d %d \n", &func_ler->codigo);
     //--fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
+=======
+    //--
+    fscanf(arq_codigo,"%d %d \n",posicao*sizeof("%d %d \n"),func_ler->codigo);
+>>>>>>> 11a618464487f07aa64a907bb1ee2347d3e8f43c
 
     //table nome
     fseek(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);

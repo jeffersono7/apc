@@ -1,5 +1,5 @@
 //#pragma optimize (O3)  //Para ficar rápido
-//#pragma -std=c++14 //Para usar compilador mais recente
+#pragma -std=c++14 //Para usar compilador mais recente
 
 
 //#include "file.h"
