@@ -40,28 +40,28 @@ struct funcionario
 
 long int posicao=0;
 
-int abre_arquivo(FILE *arq_codigo,FILE *arq_nome,FILE *arq_idade,FILE *arq_dependentes,FILE *arq_nivel,FILE *arq_hrEntrada,FILE *arq_hrSaida,
-                FILE *arq_horasExtras,FILE *arq_salario, char modo[]) //return 0 para sucesso, >0 para falha; modo=a-append,w-write,r-read
+int abre_arquivo(FILE **arq_codigo,FILE **arq_nome,FILE **arq_idade,FILE **arq_dependentes,FILE **arq_nivel,FILE **arq_hrEntrada,FILE **arq_hrSaida,
+                FILE **arq_horasExtras,FILE **arq_salario, char modo[]) //return 0 para sucesso, >0 para falha; modo=a-append,w-write,r-read
 
 {
 
-    if(arq_codigo=fopen("data\\codigo.txt",modo)!=0)
+    if((*arq_codigo=fopen("data\\codigo.txt",modo))!=0)
     {
-        if((arq_nome=fopen("data\\nome.txt",modo))!=0)
+        if((*arq_nome=fopen("data\\nome.txt",modo))!=0)
         {
-            if((arq_idade=fopen("data\\idade.txt",modo))!=0)
+            if((*arq_idade=fopen("data\\idade.txt",modo))!=0)
             {
-                if((arq_dependentes=fopen("data\\dependentes.txt",modo))!=0)
+                if((*arq_dependentes=fopen("data\\dependentes.txt",modo))!=0)
                 {
-                    if((arq_nivel=fopen("data\\nivel.txt",modo))!=0)
+                    if((*arq_nivel=fopen("data\\nivel.txt",modo))!=0)
                     {
-                        if((arq_hrEntrada=fopen("data\\hrEntrada.txt",modo))!=0)
+                        if((*arq_hrEntrada=fopen("data\\hrEntrada.txt",modo))!=0)
                         {
-                            if((arq_hrSaida=fopen("data\\hrSaida.txt",modo))!=0)
+                            if((*arq_hrSaida=fopen("data\\hrSaida.txt",modo))!=0)
                             {
-                                if((arq_horasExtras=fopen("data\\horasExtras.txt",modo))!=0)
+                                if((*arq_horasExtras=fopen("data\\horasExtras.txt",modo))!=0)
                                 {
-                                    if((arq_salario=fopen("data\\salario.txt",modo))!=0)
+                                    if((*arq_salario=fopen("data\\salario.txt",modo))!=0)
                                     {
                                         return 0;
                                     }
@@ -102,11 +102,17 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
     FILE *arq_codigo=0,*arq_nome=0,*arq_idade=0,*arq_dependentes=0,*arq_nivel=0,*arq_hrSaida=0,*arq_hrEntrada=0,*arq_horasExtras=0,*arq_salario=0; //desordenado.
 
     //Procura posição vazia no arquivo
-    posicao=1+procura_posicao();
+    posicao=procura_posicao();
 
-    if(posicao==-1)
+    if(posicao<0)
     {
-        posicao=0;
+        posicao=1;
+    }else if(posicao==0)
+    {
+        posicao=1;
+    }else
+    {
+        posicao+=1;
     }
 
     // Abre arquivo usando thread
@@ -139,13 +145,13 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
     // Escreve no arquivo.
 
     //table codigo
-            fprintf(arq_codigo, "%d %d ",posicao,func1.codigo);  //posicao é linha. terminar
+            fprintf(arq_codigo, "%d %d \n",posicao,func1.codigo);  //posicao é linha. terminar
 
     //table nome
             fprintf(arq_nome, "%d %s \n",posicao,func1.nome); // ver %s para string func1.nome
 
     //table idade
-            fprintf(arq_idade,"%d %d \n",posicao,func1.idade);
+            fprintf(arq_idade,"%d %d %d %d \n",posicao,func1.idade.dia,func1.idade.mes,func1.idade.ano);
 
     //table dependentes
             fprintf(arq_dependentes,"%d %d \n",posicao,func1.dependentes);
@@ -277,14 +283,16 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
 
 int procura_posicao()
 {
-    int temp_posicao_file,temp_posicao_arm;
+    int temp_posicao_file=0,temp_posicao_arm=0;
 
-    FILE *arq=fopen("codigo.txt","r");
+    FILE *arq=fopen("data\\codigo.txt","r");
+
     if(arq==0)
        return -1;
 
+
     do{
-        if(!feof(arq))
+        if(!(feof(arq)))
         {
             fscanf(arq, "%d %d \n",&temp_posicao_file);
 

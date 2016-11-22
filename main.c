@@ -71,7 +71,7 @@ int menu()
         printf("******** 3 Relatório geral      **********\n");
         printf("******** 0 Sair                 **********\n");
         printf("******************************************\n\n");
-        printf("Escolha uma opção: \n");
+        printf("Escolha uma opção: ");
         scanf(" %d", &menu);
 
         if (menu==1){
