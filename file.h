@@ -101,6 +101,14 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
     int status;
     FILE *arq_codigo=0,*arq_nome=0,*arq_idade=0,*arq_dependentes=0,*arq_nivel=0,*arq_hrSaida=0,*arq_hrEntrada=0,*arq_horasExtras=0,*arq_salario=0; //desordenado.
 
+    //Procura posição vazia no arquivo
+    posicao=1+procura_posicao();
+
+    if(posicao==-1)
+    {
+        posicao=0;
+    }
+
     // Abre arquivo usando thread
     //std::thread first (status=abre_arquivo, arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a'); // Verificar se ordem de flags está certa.
     status=abre_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario,"a");
@@ -126,13 +134,7 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
         }
     }
 
-    //Procura posição vazia no arquivo
-    posicao=1+procura_posicao();
 
-    if(posicao==-1)
-    {
-        posicao=0;
-    }
 
     // Escreve no arquivo.
 
