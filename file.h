@@ -112,8 +112,8 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
     for(cont=0;;cont++) // verifica se abriu.
     {
         system("cls");
-        printf("\n\n\t\tAbrindo arquivo!"); //status de abertura.
-        if(status=0)
+        printf("\n\n\t\tAbrindo arquivo!\n\n\n"); //status de abertura.
+        if(status==0)
             break;
 
         if((cont>100000) && status != 0)
@@ -124,29 +124,20 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
             fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
             return 1; //erro ao abrir arquivo!
         }
-    }//Verifica se abriu arquivo
+    }
 
+    //Procura posição vazia no arquivo
+    posicao=1+procura_posicao();
 
-    /*fwrite(&func1,sizeof (func1),1,arquivo); //escreve toda a struct no arquivo
-
-    fputs("\n",arquivo); // salta 1 linha no arquivo
-
-    fclose(arquivo);
-    return 1; //escrito com sucesso*/
-
-
+    if(posicao==-1)
+    {
+        posicao=0;
+    }
 
     // Escreve no arquivo.
 
     //table codigo
-        do{
-            if(1)//procura posicao vazia)
-            {
-                fprintf(arq_codigo, "%d %d ",posicao,func1.codigo);  //posicao é linha. terminar
-                break;
-            }else
-                posicao++;
-        }while(1);// Mesma estrutura para as outras escritas no arquivo.
+            fprintf(arq_codigo, "%d %d ",posicao,func1.codigo);  //posicao é linha. terminar
 
     //table nome
             fprintf(arq_nome, "%d %s \n",posicao,func1.nome); // ver %s para string func1.nome
@@ -176,6 +167,7 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
 
     //fecha arquivo
     fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
+    return 0; //operação realizada com sucesso!
 }
 
 //--------------------------------------------------------
@@ -214,18 +206,13 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
 
     // desenvolver, capturar nos arquivos os dados pedidos e gravar em um objeto struct temporario (temp_ler)
 
-    int temp_ler;
+    int temp_posicao;
 
     //table codigo
     fseek(arq_codigo,posicao*sizeof("%d %d \n"),SEEK_SET); //verificar sizeof
-<<<<<<< HEAD
     //--
     fscanf(arq_codigo,"%d %d \n", &func_ler->codigo);
     //--fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
-=======
-    //--
-    fscanf(arq_codigo,"%d %d \n",posicao*sizeof("%d %d \n"),func_ler->codigo);
->>>>>>> 11a618464487f07aa64a907bb1ee2347d3e8f43c
 
     //table nome
     fseek(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
@@ -286,3 +273,27 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
     // fim da função
 }
 
+int procura_posicao()
+{
+    int temp_posicao_file,temp_posicao_arm;
+
+    FILE *arq=fopen("codigo.txt","r");
+    if(arq==0)
+       return -1;
+
+    do{
+        if(!feof(arq))
+        {
+            fscanf(arq, "%d %d \n",&temp_posicao_file);
+
+            if(temp_posicao_file>temp_posicao_arm)
+                temp_posicao_arm=temp_posicao_file;
+        }
+        else
+            break;
+
+    }while(1);
+
+    fclose(arq);
+    return temp_posicao_arm;
+}

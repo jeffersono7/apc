@@ -1,5 +1,5 @@
 //#pragma optimize (O3)  //Para ficar rápido
-#pragma -std=c++14 //Para usar compilador mais recente
+//#pragma -std=c++14 //Para usar compilador mais recente
 
 
 //#include "file.h"
@@ -15,7 +15,7 @@ int escreve_arquivo(); //jefferson
 int ler_arquivo(); //jefferson
 void entrada_dados(struct funcionario *func1); //gabriel usar chave primaria, incrementando a cada gravação, e buscar no arquivo se ja existe
 int relatorio();//wesley usar a funcao pesquisa
-
+int procura_posicao();// procura posicao vazia para ser usada.
 
 int main()
 {

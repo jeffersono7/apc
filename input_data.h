@@ -72,10 +72,12 @@ void entrada_dados(struct funcionario *func_input)
                     if(status==0)
                     {
                         printf("\nGravado com sucesso!");
+                        fflush(stdin);
                         getchar();
                     }else
                     {
                         printf("\n\nNão foi possível gravar os dados. Pressione qualquer tecla para retornar ao menu...\n\n");
+                        fflush(stdin);
                         getchar();
                         break;
                     }
@@ -84,7 +86,7 @@ void entrada_dados(struct funcionario *func_input)
         }
 
         printf("\n\n\n\nDESEJA ADICIONAR OUTRO FUNCIONARIO? [s/n]: ");
-
+        fflush(stdin);
         if(getchar()=='s')
             system("cls");
         else
