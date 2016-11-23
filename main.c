@@ -58,7 +58,7 @@ int main()
     for(color=0;color<20;color++)
     {
         //Delay(faz programa pausar por determinado tempo, até evento acontecer.
-        usleep(500);
+        usleep(5000);
 
         //faz pedido de numero aleatório.
         valor_color=1+rand()%7;
