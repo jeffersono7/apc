@@ -195,78 +195,110 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
     int temp_posicao;//para armazenar posição temporaria capturada no arquivo
 
     //debug
-        printf("\n\nApos abrir arquivo!");
+        printf("\n\nApos abrir arquivo! posicao: %d",posicao);
         fflush(stdin);
         getchar();
 
-    //debug
 
     //table codigo
-    fseek(arq_codigo,posicao*sizeof("%d %d \n"),SEEK_SET); //verificar sizeof
-    //debug
-    printf("\n\napos fseek");
-    fflush(stdin);
-    getchar();
-    //debug
-    //--
-    fscanf(arq_codigo,"%d %d \n",&temp_posicao, &func_ler->codigo);
-    //debug
-    printf("\nApos fscanf!");
-    fflush(stdin);
-    getchar();
-    //debug
-
-    //--fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
+    while(!feof(arq_codigo))
+    {
+        fscanf(arq_codigo,"%d %d \n",&temp_posicao, &func_ler->codigo);
+        if(temp_posicao==posicao)
+        {
+            break;
+        }
+    }
+    temp_posicao=0;
 
     //table nome
-    fseek(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
-    //--
-    fscanf(arq_nome,"%d %s \n",&temp_posicao, &func_ler->nome);
-    //--fscanf(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
+    while(!feof(arq_nome))
+    {
+        fscanf(arq_nome,"%d %s \n",&temp_posicao, &func_ler->nome);//bug
+        if(temp_posicao==posicao)
+        {
+            break;
+        }
+    }
+    temp_posicao=0;
 
     //table idade
-    fseek(arq_idade,posicao*sizeof("%d %d \n"),SEEK_SET);
-    //--
-    fscanf(arq_idade,"%d %d %d %d \n", &temp_posicao, &func_ler->idade.dia,&func_ler->idade.mes,&func_ler->idade.ano);
-    //--fscanf(arq_idade,posicao*sizeof("%d %d \n"),SEEK_SET);
+    while(!feof(arq_idade))
+    {
+        fscanf(arq_idade,"%d %d %d %d \n", &temp_posicao, &func_ler->idade.dia,&func_ler->idade.mes,&func_ler->idade.ano);
+        if(temp_posicao==posicao)
+        {
+            break;
+        }
+    }
+    temp_posicao=0;
 
     //table dependentes
-    fseek(arq_dependentes,posicao*sizeof("%d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
-    //--
-
-    fscanf(arq_dependentes,"%d %d \n", &temp_posicao, &func_ler->dependentes);
-    //--fscanf(arq_dependentes,posicao*sizeof("%d %d \n"),SEEK_SET);
+    while(!feof(arq_dependentes))
+    {
+        fscanf(arq_dependentes,"%d %d \n", &temp_posicao, &func_ler->dependentes);
+        if(temp_posicao==posicao)
+        {
+            break;
+        }
+    }
+    temp_posicao=0;
 
     //table nivel
-    fseek(arq_nivel,posicao*sizeof("%d %c \n"),SEEK_SET); //arrumar estrutura do sizeof
-    //--
-    fscanf(arq_nivel,"%d %c \n", &temp_posicao, &func_ler->nivel);
-    //--fscanf(arq_nivel,posicao*sizeof("%d %c \n"),SEEK_SET);
+    while(!feof(arq_nivel))
+    {
+        fscanf(arq_nivel,"%d %c \n", &temp_posicao, &func_ler->nivel);
+        if(temp_posicao==posicao)
+        {
+            break;
+        }
+    }
+    temp_posicao=0;
 
     //table hrEntrada
-    fseek(arq_hrEntrada,posicao*sizeof("%d %d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
-    //--
-    fscanf(arq_hrEntrada,"%d %d %d \n", &temp_posicao, &func_ler->hrEntrada.hora,&func_ler->hrEntrada.minuto);
-
-    //--fscanf(arq_hrEntrada,posicao*sizeof("%d %d %d \n"),SEEK_SET);
+    while(!feof(arq_hrEntrada))
+    {
+        fscanf(arq_hrEntrada,"%d %d %d \n", &temp_posicao, &func_ler->hrEntrada.hora,&func_ler->hrEntrada.minuto);
+        if(temp_posicao==posicao)
+        {
+            break;
+        }
+    }
+    temp_posicao=0;
 
     //table hrSaida
-    fseek(arq_hrSaida,posicao*sizeof("%d %d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
-    //--
-    fscanf(arq_hrSaida,"%d %d %d \n", &temp_posicao, &func_ler->hrSaida.hora,&func_ler->hrSaida.minuto);
-
-    //--fscanf(arq_hrSaida,posicao*sizeof("%d %d %d \n"),SEEK_SET);
+    while(!feof(arq_hrSaida))
+    {
+        fscanf(arq_hrSaida,"%d %d %d \n", &temp_posicao, &func_ler->hrSaida.hora,&func_ler->hrSaida.minuto);
+        if(temp_posicao==posicao)
+        {
+            break;
+        }
+    }
+    temp_posicao=0;
 
     //table horasExtras
-    fseek(arq_horasExtras,posicao*sizeof("%d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
-    //--
-    fscanf(arq_horasExtras,"%d %d \n", &temp_posicao, &func_ler->horasExtras);
-    //--fscanf(arq_horasExtras,posicao*sizeof("%d %d \n"),SEEK_SET);
+    while(!feof(arq_horasExtras))
+    {
+        fscanf(arq_horasExtras,"%d %d \n", &temp_posicao, &func_ler->horasExtras);
+        if(temp_posicao==posicao)
+        {
+            break;
+        }
+    }
+    temp_posicao=0;
 
     //table salario
-    fseek(arq_salario,posicao*sizeof("%d %f \n"),SEEK_SET); //arrumar estrutura do sizeof
-    //--
-    fscanf(arq_salario,"%d %f \n", &temp_posicao, &func_ler->salario);
+    while(!feof(arq_salario))
+    {
+        fscanf(arq_salario,"%d %f \n", &temp_posicao, &func_ler->salario);
+        if(temp_posicao==posicao)
+        {
+            break;
+        }
+    }
+    temp_posicao=0;
+
     //debug
         printf("\n\nfim fscanf");
         fflush(stdin);
