@@ -3,6 +3,7 @@
 #include <locale.h>
 #include <unistd.h>
 #include <time.h>
+#include <string.h>
 //#include <thread>
 
 //file.h

@@ -119,8 +119,105 @@ int main()
 
 
 //---------------------------------------------------------------
-int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois usar ler_arquivo desenvolver
+int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois usar ler_arquivo #desenvolver
+//caso nao encontrado, retorna -1, e 0 para retornar ao menu
 {
+    char temp_nome[30],temp_nome_file[30];
+    int temp_posicao=0,temp_posicao_file=0,opcao=0,temp_codigo=0,temp_codigo_file;
+
+    system("cls"); //Exibe opcao de pesquisa
+    do{
+        printf("\n\n1-Pesquisar por código do funcionário\n");
+        printf("\n\n2-Pesquisar por nome do funcionário\n");
+        printf("\n\n0-Para voltar");
+        printf("\nDigite uma opcao: ");
+        fflush(stdin);
+        scanf("%d",&opcao);
+        if(opcao==1)
+            break;
+        if(opcao==2)
+            break;
+        if(opcao==0)//retorna ao menu
+            return 0;
+    }while(1);
+
+    if(opcao==1)
+    {
+        printf("Digite o código do funcionario: ");
+        fprintf(stdin,"%s",&temp_codigo);
+
+
+        //Abre arquivo da tabela codigo
+        FILE *arq=fopen("data\\codigo.txt","r");
+
+        //faz busca nos valores.
+        do
+        {
+            if(!(feof(arq)))
+            {
+                fscanf("%d %d \n", &temp_posicao_file,&temp_codigo_file);
+
+                //compara ao código inserido, se sucesso retorna posicao
+                if(temp_codigo==temp_codigo_file)
+                {
+                    temp_posicao=temp_posicao_file;
+
+                    fclose(arq);
+
+                    return temp_posicao;
+                }
+            }else //talvez um bug aqui!
+            {
+                printf("\n\nNão encontrado!");
+                printf("\n\nPressione qualquer tecla para retornar ao menu...");
+                fflush(stdin);
+                getchar();
+
+                fclose(arq);
+                return -1;
+            }
+        }while(1);
+
+
+
+    }else if(opcao==2)
+    {
+        printf("Digite o nome do funcionario: ");
+        fprintf(stdin,"%s",&temp_nome);
+
+        //Abre arquivo da tabela nome
+        FILE *arq=fopen("data\\nome.txt","r");
+
+        //faz busca nos valores.
+        do
+        {
+            if(!(feof(arq)))
+            {
+                fscanf("%d %s \n", &temp_posicao_file,&temp_nome_file);
+
+                //compara ao nome inserido, se sucesso retorna posicao
+                if(strcmp(temp_nome,temp_nome_file)==0)
+                {
+                    temp_posicao=temp_posicao_file;
+
+                    fclose(arq);
+
+                    return temp_posicao;
+                }
+            }else //talvez um bug aqui!
+            {
+                printf("\n\nNão encontrado!");
+                printf("\n\nPressione qualquer tecla para retornar ao menu...");
+                fflush(stdin);
+                getchar();
+
+                fclose(arq);
+                return -1;
+            }
+        }while(1);
+
+
+    }
 
 }
 
