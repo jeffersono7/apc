@@ -7,4 +7,4 @@
 # generated directories
 bin/
 obj/
-data/.*
+data/
