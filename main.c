@@ -3,8 +3,8 @@
 
 
 //#include "file.h"
-#include "input_data.h"
-
+//#include "input_data.h"
+#include "relatorio.h"
 //#include <thread> //Para usar threads
 
 
@@ -14,7 +14,8 @@ void cabecalho(); //Wagton
 int escreve_arquivo(); //jefferson
 int ler_arquivo(); //jefferson
 void entrada_dados(struct funcionario *func1); //gabriel usar chave primaria, incrementando a cada gravação, e buscar no arquivo se ja existe
-int relatorio();//wesley usar a funcao pesquisa
+void relatorio_individual(int rel_posicao);//wesley usar a funcao pesquisa
+void relatorio_geral(); //exibe todos os dados nas tabelas, usar getchar para ir descendo os dados exibidos, igual nos unix e linux.
 int procura_posicao();// procura posicao vazia para ser usada.
 
 int main()
@@ -24,6 +25,7 @@ int main()
 
     int opcao;
     struct funcionario entrada_funcionario;
+    int posicao;
 
     //animação ao abrir programa
     int color,valor_color;
@@ -107,6 +109,26 @@ int main()
                 entrada_dados(&entrada_funcionario);
                 break;
 
+            case 2:
+                posicao=pesquisa(); // Possui bug caso tenha algum nome igual, também tem erro ao pesquisar nome que nao existe.
+                if(posicao!=0 && posicao!=-1)
+                {
+                    //debug
+                    printf("\n%d", posicao);
+                    fflush(stdin);
+                    getchar();
+                    //debug
+
+                    relatorio_individual(posicao);
+                    break;
+                }
+                else
+                    break;
+
+            case 3:
+                relatorio_geral();
+                break;
+
             default:
                 break;
         }
@@ -121,18 +143,22 @@ int main()
 //---------------------------------------------------------------
 int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois usar ler_arquivo #desenvolver
 //caso nao encontrado, retorna -1, e 0 para retornar ao menu
+//possui erro ao pesquisar nome inexistente
+//possui falha ao tentar abrir arquivo que ainda nao foi criado, tratar isso
 {
     char temp_nome[30],temp_nome_file[30];
     int temp_posicao=0,temp_posicao_file=0,opcao=0,temp_codigo=0,temp_codigo_file;
 
     system("cls"); //Exibe opcao de pesquisa
     do{
-        printf("\n\n1-Pesquisar por código do funcionário\n");
-        printf("\n\n2-Pesquisar por nome do funcionário\n");
-        printf("\n\n0-Para voltar");
+        printf("\n1-Pesquisar por código do funcionário\n");
+        printf("\n2-Pesquisar por nome do funcionário\n");
+        printf("\n0-Para voltar\n\n");
         printf("\nDigite uma opcao: ");
+
         fflush(stdin);
         scanf("%d",&opcao);
+
         if(opcao==1)
             break;
         if(opcao==2)
@@ -143,9 +169,11 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
 
     if(opcao==1)
     {
-        printf("Digite o código do funcionario: ");
-        fprintf(stdin,"%s",&temp_codigo);
-
+        system("cls");
+        printf("Digite o código do funcionário: ");
+        //fprintf(stdin,"%s",&temp_codigo);
+        fflush(stdin);
+        scanf("%d",&temp_codigo);
 
         //Abre arquivo da tabela codigo
         FILE *arq=fopen("data\\codigo.txt","r");
@@ -155,7 +183,7 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
         {
             if(!(feof(arq)))
             {
-                fscanf("%d %d \n", &temp_posicao_file,&temp_codigo_file);
+                fscanf(arq,"%d %d \n", &temp_posicao_file,&temp_codigo_file);
 
                 //compara ao código inserido, se sucesso retorna posicao
                 if(temp_codigo==temp_codigo_file)
@@ -182,8 +210,11 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
 
     }else if(opcao==2)
     {
-        printf("Digite o nome do funcionario: ");
-        fprintf(stdin,"%s",&temp_nome);
+        system("cls");
+        printf("Digite o nome do funcionário: ");
+        //fprintf(stdin,"%s",&temp_nome);
+        fflush(stdin);
+        gets(temp_nome);
 
         //Abre arquivo da tabela nome
         FILE *arq=fopen("data\\nome.txt","r");
@@ -193,7 +224,7 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
         {
             if(!(feof(arq)))
             {
-                fscanf("%d %s \n", &temp_posicao_file,&temp_nome_file);
+                fscanf(arq,"%d %s \n", &temp_posicao_file,&temp_nome_file);
 
                 //compara ao nome inserido, se sucesso retorna posicao
                 if(strcmp(temp_nome,temp_nome_file)==0)
@@ -204,7 +235,7 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
 
                     return temp_posicao;
                 }
-            }else //talvez um bug aqui!
+            }else//talvez um bug aqui!
             {
                 printf("\n\nNão encontrado!");
                 printf("\n\nPressione qualquer tecla para retornar ao menu...");
@@ -238,6 +269,8 @@ int menu()
         printf("\t\t******** 0 Sair                 **********\n");
         printf("\t\t******************************************\n\n");
         printf("Escolha uma opção: ");
+
+        fflush(stdin);
         scanf(" %d", &menu);
 
         if (menu==1){

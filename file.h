@@ -4,44 +4,15 @@
 #include <unistd.h>
 #include <time.h>
 #include <string.h>
+#include "struct.h"
 //#include <thread>
 
 //file.h
 
 //nota: revisar codigo.
 
-//struct
 
-//------------------------------
-struct data
-{
-    int dia;
-    int mes;
-    int ano;
-};
-
-struct hora
-{
-    int hora;
-    int minuto;
-};
-
-struct funcionario
-{
-    int codigo;
-    char nome[30];
-    struct data idade;
-    int dependentes;
-    char nivel; // B-basico,M-media,S-superior
-    struct hora hrEntrada;
-    struct hora hrSaida;
-    int horasExtras;
-    float salario;
-};
-
-//-----------------------------------------
-
-long int posicao=0;
+//long int posicao=0;
 
 int abre_arquivo(FILE **arq_codigo,FILE **arq_nome,FILE **arq_idade,FILE **arq_dependentes,FILE **arq_nivel,FILE **arq_hrEntrada,FILE **arq_hrSaida,
                 FILE **arq_horasExtras,FILE **arq_salario, char modo[]) //return 0 para sucesso, >0 para falha; modo=a-append,w-write,r-read
@@ -102,6 +73,7 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
 // funções como pesquisa vai buscar nas tabelas inserindo a chave primaria do "dado".
 {
     int status;
+    int posicao;
     FILE *arq_codigo=0,*arq_nome=0,*arq_idade=0,*arq_dependentes=0,*arq_nivel=0,*arq_hrSaida=0,*arq_hrEntrada=0,*arq_horasExtras=0,*arq_salario=0; //desordenado.
 
     //Procura posição vazia no arquivo
