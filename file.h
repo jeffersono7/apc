@@ -157,7 +157,7 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
 
 
 
-int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
+int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigir erro igual do escre_arquivo fecha ao abrir arquivo tbm
 {
     //Abre arquivo usando thread
     int status;
@@ -175,12 +175,13 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
     {
         system("cls");
         printf("\n\n\t\tAbrindo arquivo!"); //status de abertura.
-        if(status=0)
+        if(status==0)
             break;
         if((cont>100000) && status != 0)
         {
             printf("\nErro ao abrir arquivo!\n");
             printf("\n\nTente novamento a operação...");
+            fflush(stdin);
             getchar();
             fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
             return 1; //erro ao abrir arquivo!
@@ -253,6 +254,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver
     //fecha arquivo
     fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
 
+    return 0; //0-sucesso
     // fim da função
 }
 

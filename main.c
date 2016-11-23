@@ -114,7 +114,7 @@ int main()
                 if(posicao!=0 && posicao!=-1)
                 {
                     //debug
-                    printf("\n%d", posicao);
+                    printf("\n\n\%d", posicao);
                     fflush(stdin);
                     getchar();
                     //debug
