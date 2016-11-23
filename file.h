@@ -212,16 +212,18 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
     temp_posicao=0;
 
     //table nome
-    while(!feof(arq_nome))
+    while(!feof(arq_nome)) //erro aqui
     {
-        fscanf(arq_nome,"%d %s \n",&temp_posicao, &func_ler->nome);//bug
+        fscanf(arq_nome,"%d %s \n",&temp_posicao, &func_ler->nome); //erro
         if(temp_posicao==posicao)
         {
             break;
         }
     }
     temp_posicao=0;
-
+    printf("\nnome\n");
+    fflush(stdin);
+    getchar();
     //table idade
     while(!feof(arq_idade))
     {
@@ -287,7 +289,9 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
         }
     }
     temp_posicao=0;
-
+    printf("aqui");
+    fflush(stdin);
+    getchar();
     //table salario
     while(!feof(arq_salario))
     {
