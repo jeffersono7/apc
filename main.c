@@ -24,6 +24,75 @@ int main()
 
     int opcao;
     struct funcionario entrada_funcionario;
+
+    //animação ao abrir programa
+    int color,valor_color;
+
+    //alimenta função de randomização.
+    srand((unsigned)time(NULL));
+
+    system("cls");
+
+    //matriz
+    printf("\n\n\n\n");
+    printf("\t\t\t\t#############################################\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#             ***  INICIANDO  ***           #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#          SEJA      BEM      VINDO         #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#                                           #\n");
+    printf("\t\t\t\t#############################################\n");
+    //fim matriz
+
+    //fim de animação ---------------
+
+
+    for(color=0;color<20;color++)
+    {
+        //Delay(faz programa pausar por determinado tempo, até evento acontecer.
+        usleep(500);
+
+        //faz pedido de numero aleatório.
+        valor_color=1+rand()%7;
+        switch(valor_color)
+        {
+        case 1:
+            system("color 10");
+            break;
+
+        case 2:
+            system("color b1");
+            break;
+
+        case 3:
+            system("color 78");
+            break;
+
+        case 4:
+            system("color d0");
+            break;
+
+        case 5:
+            system("color 94");
+            break;
+
+        case 6:
+            system("color 0f");
+            break;
+
+        case 7:
+            system("color 03");
+        }
+
+    }
     do
     {
         opcao=menu();
