@@ -134,12 +134,12 @@ int menu()
     do{
         system("cls");
         cabecalho();
-        printf("******************************************\n");
-        printf("******** 1 Inserir funcionários **********\n");
-        printf("******** 2 Relatório individual **********\n");
-        printf("******** 3 Relatório geral      **********\n");
-        printf("******** 0 Sair                 **********\n");
-        printf("******************************************\n\n");
+        printf("\t\t******************************************\n");
+        printf("\t\t******** 1 Inserir funcionários **********\n");
+        printf("\t\t******** 2 Relatório individual **********\n");
+        printf("\t\t******** 3 Relatório geral      **********\n");
+        printf("\t\t******** 0 Sair                 **********\n");
+        printf("\t\t******************************************\n\n");
         printf("Escolha uma opção: ");
         scanf(" %d", &menu);
 
