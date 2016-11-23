@@ -177,7 +177,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
         printf("\n\n\t\tAbrindo arquivo!"); //status de abertura.
         if(status==0)
             break;
-        if((cont>100000) && status != 0)
+        if((cont>100000) && (status != 0))
         {
             printf("\nErro ao abrir arquivo!\n");
             printf("\n\nTente novamento a operação...");
@@ -187,68 +187,91 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
             return 1; //erro ao abrir arquivo!
         }
     } // fim for.
+    //limpa tela
+    system("cls");
 
     // desenvolver, capturar nos arquivos os dados pedidos e gravar em um objeto struct temporario (temp_ler)
 
-    int temp_posicao;
+    int temp_posicao;//para armazenar posição temporaria capturada no arquivo
+
+    //debug
+        printf("\n\nApos abrir arquivo!");
+        fflush(stdin);
+        getchar();
+
+    //debug
 
     //table codigo
     fseek(arq_codigo,posicao*sizeof("%d %d \n"),SEEK_SET); //verificar sizeof
+    //debug
+    printf("\n\napos fseek");
+    fflush(stdin);
+    getchar();
+    //debug
     //--
-    fscanf(arq_codigo,"%d %d \n", &func_ler->codigo);
+    fscanf(arq_codigo,"%d %d \n",&temp_posicao, &func_ler->codigo);
+    //debug
+    printf("\nApos fscanf!");
+    fflush(stdin);
+    getchar();
+    //debug
+
     //--fscanf(arq_codigo,"%d %d \n",temp_posicao,func_ler->codigo);
 
     //table nome
     fseek(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
     //--
-    fscanf(arq_nome,"%d %s \n", &func_ler->nome);
+    fscanf(arq_nome,"%d %s \n",&temp_posicao, &func_ler->nome);
     //--fscanf(arq_nome,posicao*sizeof("%d %s \n"),SEEK_SET);
 
     //table idade
     fseek(arq_idade,posicao*sizeof("%d %d \n"),SEEK_SET);
     //--
-    fscanf(arq_idade,"%d %d %d %d \n",&func_ler->idade.dia,&func_ler->idade.mes,&func_ler->idade.ano);
+    fscanf(arq_idade,"%d %d %d %d \n", &temp_posicao, &func_ler->idade.dia,&func_ler->idade.mes,&func_ler->idade.ano);
     //--fscanf(arq_idade,posicao*sizeof("%d %d \n"),SEEK_SET);
 
     //table dependentes
     fseek(arq_dependentes,posicao*sizeof("%d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
 
-    fscanf(arq_dependentes,"%d %d \n", &func_ler->dependentes);
+    fscanf(arq_dependentes,"%d %d \n", &temp_posicao, &func_ler->dependentes);
     //--fscanf(arq_dependentes,posicao*sizeof("%d %d \n"),SEEK_SET);
 
     //table nivel
     fseek(arq_nivel,posicao*sizeof("%d %c \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_nivel,"%d %c \n", &func_ler->nivel);
+    fscanf(arq_nivel,"%d %c \n", &temp_posicao, &func_ler->nivel);
     //--fscanf(arq_nivel,posicao*sizeof("%d %c \n"),SEEK_SET);
 
     //table hrEntrada
     fseek(arq_hrEntrada,posicao*sizeof("%d %d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_hrEntrada,"%d %d %d \n", &func_ler->hrEntrada.hora,&func_ler->hrEntrada.minuto);
+    fscanf(arq_hrEntrada,"%d %d %d \n", &temp_posicao, &func_ler->hrEntrada.hora,&func_ler->hrEntrada.minuto);
 
     //--fscanf(arq_hrEntrada,posicao*sizeof("%d %d %d \n"),SEEK_SET);
 
     //table hrSaida
     fseek(arq_hrSaida,posicao*sizeof("%d %d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_hrSaida,"%d %d %d \n", &func_ler->hrSaida.hora,&func_ler->hrSaida.minuto);
+    fscanf(arq_hrSaida,"%d %d %d \n", &temp_posicao, &func_ler->hrSaida.hora,&func_ler->hrSaida.minuto);
 
     //--fscanf(arq_hrSaida,posicao*sizeof("%d %d %d \n"),SEEK_SET);
 
     //table horasExtras
     fseek(arq_horasExtras,posicao*sizeof("%d %d \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_horasExtras,"%d %d \n",&func_ler->horasExtras);
+    fscanf(arq_horasExtras,"%d %d \n", &temp_posicao, &func_ler->horasExtras);
     //--fscanf(arq_horasExtras,posicao*sizeof("%d %d \n"),SEEK_SET);
 
     //table salario
     fseek(arq_salario,posicao*sizeof("%d %f \n"),SEEK_SET); //arrumar estrutura do sizeof
     //--
-    fscanf(arq_salario,"%d %f \n",&func_ler->salario);
-    fscanf(arq_salario,posicao*sizeof("%d %f \n"),SEEK_SET);
-
+    fscanf(arq_salario,"%d %f \n", &temp_posicao, &func_ler->salario);
+    //debug
+        printf("\n\nfim fscanf");
+        fflush(stdin);
+        getchar();
+    //debug
     //  ***  Fim de leitura ***
 
     //fecha arquivo
