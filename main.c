@@ -1,4 +1,4 @@
-//#pragma optimize (O3)  //Para ficar rápido
+#pragma optimize(-O3)  //Para ficar rápido
 //#pragma -std=c++14 //Para usar compilador mais recente
 
 
