@@ -57,11 +57,6 @@ void relatorio_geral()
                 }
             }
         }
-        //debug
-        printf("erro");
-        fflush(stdin);
-        getchar();
-        //debug
 
     }while(1);
 }
