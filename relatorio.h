@@ -75,6 +75,12 @@ void relatorio_individual(int rel_posicao)
 
             //aqui os printf para exibir os dados da struct
 
+            //debug
+            printf("\n\nNome: %s",rel_func.nome);
+            fflush(stdin);
+            getchar();
+            //fim_debug
+
 
             //exibir de acordo com o enter do usuário, como se estivesse vendo logs.
 
