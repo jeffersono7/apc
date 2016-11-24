@@ -19,8 +19,11 @@ int abre_arquivo(FILE **arq_codigo,FILE **arq_nome,FILE **arq_idade,FILE **arq_d
 
 {
 
-    if((*arq_codigo=fopen("data\\codigo.txt",modo))!=0)
+    if((*arq_codigo=fopen("data\\codigo.txt",modo))!=NULL)
     {
+        printf("1-%d",arq_codigo);
+        fflush(stdin);
+        getchar();
         if((*arq_nome=fopen("data\\nome.txt",modo))!=0)
         {
             if((*arq_idade=fopen("data\\idade.txt",modo))!=0)
@@ -174,7 +177,10 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
     for(cont=0;;cont++) // verifica se abriu.
     {
         system("cls");
-        printf("\n\n\t\tAbrindo arquivo!"); //status de abertura.
+        printf("\n\n\t\tAbrindo arquivo! status: %d",status); //status de abertura.
+        fflush(stdin);
+        getchar();
+        //debug acima
         if(status==0)
             break;
         if((cont>100000) && (status != 0))

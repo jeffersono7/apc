@@ -111,14 +111,9 @@ int main()
 
             case 2:
                 posicao=pesquisa(); // Possui bug caso tenha algum nome igual, também tem erro ao pesquisar nome que nao existe.
-                if(posicao!=0 && posicao!=-1)
-                {
-                    //debug
-                    printf("\n\n\%d", posicao);
-                    fflush(stdin);
-                    getchar();
-                    //debug
 
+                if(posicao!=0 && posicao!=-1 && posicao!=-2)
+                {
                     relatorio_individual(posicao);
                     break;
                 }
@@ -143,6 +138,7 @@ int main()
 //---------------------------------------------------------------
 int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois usar ler_arquivo #desenvolver
 //caso nao encontrado, retorna -1, e 0 para retornar ao menu
+//retorna -2 caso não consiga abrir arquivo
 //possui erro ao pesquisar nome inexistente
 //possui falha ao tentar abrir arquivo que ainda nao foi criado, tratar isso
 {
@@ -177,6 +173,17 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
 
         //Abre arquivo da tabela codigo
         FILE *arq=fopen("data\\codigo.txt","r");
+
+        //tratamento de erro, caso arq==NULL
+        if(arq==NULL)
+        {
+            printf("\n\n\nErro ao tentar abrir arquivo!\n");
+            printf("\n\nPor favor, verifique se inseriu algum cadastro!\n\n");
+            printf("\nPressione qualquer tecla para retornar ao menu...");
+            fflush(stdin);
+            getchar();
+            return -2;
+        }
 
         //faz busca nos valores.
         do
@@ -219,6 +226,17 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
         //Abre arquivo da tabela nome
         FILE *arq=fopen("data\\nome.txt","r");
 
+        //tratamento de erros, caso arq==NULL
+        if(arq==NULL)
+        {
+            printf("\n\n\nErro ao tentar abrir arquivo!\n");
+            printf("\n\nPor favor, verifique se inseriu algum cadastro!\n\n");
+            printf("\nPressione qualquer tecla para retornar ao menu...");
+            fflush(stdin);
+            getchar();
+            return -2;
+        }
+
         //variavel para trocar espaços e '_'
         int espaco;
 
@@ -237,7 +255,7 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
                     }
                 }
                 //compara ao nome inserido, se sucesso retorna posicao
-                if(strcmp(temp_nome,temp_nome_file)==0)
+                 if(strcmp(temp_nome,temp_nome_file)==0)
                 {
                     temp_posicao=temp_posicao_file;
 
