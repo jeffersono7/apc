@@ -26,6 +26,17 @@ void relatorio_geral()
                 //aqui os printf para exibir os dados da struct
                 printf("\n\nExibe dados");
 
+                //inicio exibição
+                if((contador%2)==0)
+                {
+                    //Exibe dados de 2 em 2 cadastros.
+                    printf("-------------------------------------------------------------------");
+                    printf("\nCodigo: %d",rel_func.codigo);
+                    printf("\nNome: %s",rel_func.nome);
+                    //idade data de nasc ou idade
+                    printf("\n")
+                }
+
                 //exibir de acordo com o enter do usuário, como se estivesse vendo logs. aqui ou dentro do do{}while;
 
                 return 0; //para voltar ao menu
