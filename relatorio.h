@@ -1,7 +1,7 @@
 #include "input_data.h"
 
 void relatorio_geral()
-// precisa abrir todos os arquivos de tabelas, use fun��o.
+// precisa abrir todos os arquivos de tabelas, use função.
 {
     //FILE *arq_codigo,*arq_nome,*arq_idade,*arq_dependentes,*arq_nivel,*arq_hrEntrada,*arq_hrSaida,*arq_horasExtras,*arq_salario;
     //status=abre_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario,"r");
@@ -17,16 +17,16 @@ void relatorio_geral()
     {
         for(contador=1;;contador++)
         {
-            pesquisa_status=existe_posicao(contador);//-1:falha ao abrir -2:nao existe aquela posi��o no arquivo
+            pesquisa_status=existe_posicao(contador);//-1:falha ao abrir -2:nao existe aquela posição no arquivo
 
             if(pesquisa_status!=-1 && pesquisa_status!=-2 && (!(ler_arquivo(&rel_func,contador))))
             {
-                //exibir dados    -funcionando, basta fazer aqui a implementa��o
+                //exibir dados    -funcionando, basta fazer aqui a implementação
 
                 //aqui os printf para exibir os dados da struct
                 printf("\n\nExibe dados");
 
-                //inicio exibi��o
+                //inicio exibição
                 if((contador%2)==0)
                 {
                     //Exibe dados de 2 em 2 cadastros.
@@ -34,10 +34,10 @@ void relatorio_geral()
                     printf("\nCodigo: %d",rel_func.codigo);
                     printf("\nNome: %s",rel_func.nome);
                     //idade data de nasc ou idade
-                    printf("\n")
+                    printf("\n");
                 }
 
-                //exibir de acordo com o enter do usu�rio, como se estivesse vendo logs. aqui ou dentro do do{}while;
+                //exibir de acordo com o enter do usuário, como se estivesse vendo logs. aqui ou dentro do do{}while;
 
                 return 0; //para voltar ao menu
 
@@ -47,7 +47,7 @@ void relatorio_geral()
             {
                 if(contador==0) //tratamento para erro.
                 {
-                    printf("\n\nInfelizmente n�o foi poss�vel acessar o relat�rio!\n\n");
+                    printf("\n\nInfelizmente não foi possível acessar o relatório!\n\n");
                     printf("Verifique se existe algum cadastro efetivado!\n\n\n");
                     printf("\n\n\t\tDeseja tentar novamente? (s ou n): ");
                     fflush(stdin);
@@ -60,7 +60,7 @@ void relatorio_geral()
                 else
                 {
                     printf("\n\n\n\n------------------------------------------------------------");
-                    printf("\n\nFIM DO RELAT�RIO!");
+                    printf("\n\nFIM DO RELATÓRIO!");
                     printf("\n\nPressione qualquer tecla para voltar ao menu...");
                     fflush(stdin);
                     getchar();
@@ -74,7 +74,7 @@ void relatorio_geral()
 
 
 void relatorio_individual(int rel_posicao)
-// precisa abrir todos os arquivos de tabelas, use fun��o.
+// precisa abrir todos os arquivos de tabelas, use função.
 {
     struct funcionario rel_func;
 
@@ -82,24 +82,37 @@ void relatorio_individual(int rel_posicao)
     {
         if(!(ler_arquivo(&rel_func,rel_posicao)))
         {
-            //exibir dados    -funcionando, basta fazer aqui a implementa��o
+            //exibir dados    -funcionando, basta fazer aqui a implementação
 
             //aqui os printf para exibir os dados da struct
 
-            //debug
-            printf("\n\nNome: %s",rel_func.nome);
+            printf("####################################");
+            printf("####################################");
+            printf("#######   Dados Do Usuário   #######");
+            printf("####################################");
+            printf("####################################\n\n");
+            printf("Nome:                      %s\n",rel_func.nome);
+            printf("Idade:                     %d\n",rel_func.idade);
+            printf("Nível de Escolaridade:     %c\n",rel_func.nivel);
+            printf("Horário de entrada:        %c\n",rel_func.hrEntrada);
+            printf("Horário de saída:          %c\n",rel_func.hrSaida);
+            printf("Quantidade de dependentes: %d\n",rel_func.dependentes);
+            printf("Hora Extra:                %c\n",rel_func.horasExtras);
+            printf("Salário:                   %f\n",rel_func.salario);
+
+
             fflush(stdin);
             getchar();
             //fim_debug
 
 
-            //exibir de acordo com o enter do usu�rio, como se estivesse vendo logs.
+            //exibir de acordo com o enter do usuário, como se estivesse vendo logs.
 
             break;
         }
         else
         {
-            printf("N�o foi poss�vel acessar o relat�rio!\n\n");
+            printf("Não foi possível acessar o relatório!\n\n");
             printf("\n\n\t\tDeseja tentar novamente? (s ou n");
 
             if(getchar()=='n')
