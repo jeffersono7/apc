@@ -178,18 +178,16 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
     {
         system("cls");
         printf("\n\n\t\tAbrindo arquivo! status: %d",status); //status de abertura.
-        fflush(stdin);
-        getchar();
+
         //debug acima
         if(status==0)
             break;
-        if((cont>100000) && (status != 0))
+        if((cont>500) && (status != 0))
         {
             printf("\nErro ao abrir arquivo!\n");
-            printf("\n\nTente novamento a operação...");
-            fflush(stdin);
-            getchar();
-            fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
+            printf("\n\nTente novamento a operação...\n");
+
+            //fecha_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario);
             return 1; //erro ao abrir arquivo!
         }
     } // fim for.

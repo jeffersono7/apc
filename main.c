@@ -17,6 +17,8 @@ void entrada_dados(struct funcionario *func1); //gabriel usar chave primaria, in
 void relatorio_individual(int rel_posicao);//wesley usar a funcao pesquisa
 void relatorio_geral(); //exibe todos os dados nas tabelas, usar getchar para ir descendo os dados exibidos, igual nos unix e linux.
 int procura_posicao();// procura posicao vazia para ser usada.
+inline int existe_posicao(int); //verifica se existe no arquivo aquela posicao no arquivo, e retorna o status.
+//Fim declarações
 
 int main()
 {
@@ -139,8 +141,8 @@ int main()
 int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois usar ler_arquivo #desenvolver
 //caso nao encontrado, retorna -1, e 0 para retornar ao menu
 //retorna -2 caso não consiga abrir arquivo
-//possui erro ao pesquisar nome inexistente
-//possui falha ao tentar abrir arquivo que ainda nao foi criado, tratar isso
+//possui erro ao pesquisar nome inexistente --corrigido
+//possui falha ao tentar abrir arquivo que ainda nao foi criado, tratar isso --corrigido
 {
     char temp_nome[30],temp_nome_file[30];
     int temp_posicao=0,temp_posicao_file=0,opcao=0,temp_codigo=0,temp_codigo_file;
