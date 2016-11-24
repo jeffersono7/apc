@@ -14,6 +14,14 @@ void entrada_dados(struct funcionario *func_input)
         fflush(stdin);
         printf("\nDigite o nome do funcionário: ");
         gets(func_input->nome);
+        int espaco;
+        for(espaco=0;espaco<30;espaco++) //troca espaço por '_'
+        {
+            if(func_input->nome[espaco]==' ')
+            {
+                func_input->nome[espaco]='_';
+            }
+        }
 
         fflush(stdin);
         printf("\nInsira a data de nascimento: (Digite o dia/mes/ano separadamente e seguido de um enter)");
@@ -85,7 +93,7 @@ void entrada_dados(struct funcionario *func_input)
             }
         }
 
-        printf("\n\n\n\nDESEJA ADICIONAR OUTRO FUNCIONARIO? [s/n]: ");
+        printf("\n\n\n\n\t\tDESEJA ADICIONAR OUTRO FUNCIONARIO? [s/n]: ");
         fflush(stdin);
         if(getchar()=='s')
             system("cls");

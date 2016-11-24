@@ -219,6 +219,9 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
         //Abre arquivo da tabela nome
         FILE *arq=fopen("data\\nome.txt","r");
 
+        //variavel para trocar espaços e '_'
+        int espaco;
+
         //faz busca nos valores.
         do
         {
@@ -226,6 +229,13 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
             {
                 fscanf(arq,"%d %s \n", &temp_posicao_file,&temp_nome_file);
 
+                for(espaco=0;espaco<30;espaco++) //troca '_' por (espaço) ' '
+                {
+                    if(temp_nome_file[espaco]=='_')
+                    {
+                        temp_nome_file[espaco]=' ';
+                    }
+                }
                 //compara ao nome inserido, se sucesso retorna posicao
                 if(strcmp(temp_nome,temp_nome_file)==0)
                 {

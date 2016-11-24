@@ -194,16 +194,11 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
 
     int temp_posicao;//para armazenar posição temporaria capturada no arquivo
 
-    //debug
-        printf("\n\nApos abrir arquivo! posicao: %d",posicao);
-        fflush(stdin);
-        getchar();
-
-
     //table codigo
-    while(!feof(arq_codigo))
+    while(!(feof(arq_codigo)))
     {
         fscanf(arq_codigo,"%d %d \n",&temp_posicao, &func_ler->codigo);
+
         if(temp_posicao==posicao)
         {
             break;
@@ -212,18 +207,16 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
     temp_posicao=0;
 
     //table nome
-    while(!feof(arq_nome)) //erro aqui
+    while(!(feof(arq_nome))) //armazenar no lugar do espaço "_"
     {
-        fscanf(arq_nome,"%d %s \n",&temp_posicao, &func_ler->nome); //erro
+        fscanf(arq_nome,"%d %s \n",&temp_posicao, func_ler->nome);
         if(temp_posicao==posicao)
         {
             break;
         }
     }
     temp_posicao=0;
-    printf("\nnome\n");
-    fflush(stdin);
-    getchar();
+
     //table idade
     while(!feof(arq_idade))
     {
@@ -289,9 +282,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
         }
     }
     temp_posicao=0;
-    printf("aqui");
-    fflush(stdin);
-    getchar();
+
     //table salario
     while(!feof(arq_salario))
     {
@@ -303,18 +294,14 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
     }
     temp_posicao=0;
 
-    //debug
-        printf("\n\nfim fscanf");
-        fflush(stdin);
-        getchar();
-    //debug
     //  ***  Fim de leitura ***
 
     //fecha arquivo
     fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
 
     return 0; //0-sucesso
-    // fim da função
+
+    // fim da função -----------------------------------
 }
 
 int procura_posicao()

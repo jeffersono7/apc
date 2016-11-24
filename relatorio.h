@@ -26,23 +26,22 @@ void relatorio_individual(int rel_posicao) //tratamentos de erros aqui dentro
     {
         if(!(ler_arquivo(&rel_func,rel_posicao)))
         {
-            //exibir dados
-            printf("\n\nrelatorio");
-            printf(("\n%d %s",rel_func.codigo,rel_func.nome));
+            //exibir dados    -funcionando, basta fazer aqui a implementação
 
-            fflush(stdin);
-            getchar();
+            //aqui os printf para exibir os dados da struct
 
-            //debug
-                //imprime relatorio
-                printf("\n\n%d %d", rel_posicao,rel_func.codigo);
-                printf("\n\n%d %s", rel_posicao,rel_func.nome);
-                printf("\n\n%d %d %d %d", rel_posicao,rel_func.idade.dia,rel_func.idade.mes,rel_func.idade.ano);
-                printf("\n\n%d %d", rel_posicao,rel_func.dependentes);
-                fflush(stdin);
-                getchar();
+
+            //exibir de acordo com o enter do usuário, como se estivesse vendo logs.
 
             break;
+        }
+        else
+        {
+            printf("Não foi possível acessar o relatório!\n\n");
+            printf("\n\n\t\tDeseja tentar novamente? (s ou n");
+
+            if(getchar()=='n')
+                break;
         }
 
     }while(1);
