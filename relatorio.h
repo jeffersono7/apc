@@ -11,22 +11,24 @@ void relatorio_geral()
     int contador;//para for abaixo
     int pesquisa_status=0;
 
+    system("cls"); //limpa tela
+
     do
     {
-        for(contador=0;;contador++)
+        for(contador=1;;contador++)
         {
             pesquisa_status=existe_posicao(contador);//-1:falha ao abrir -2:nao existe aquela posição no arquivo
 
-            if(pesquisa_status!=-1 && pesquisa_status!=-2 &&(!(ler_arquivo(&rel_func,contador))))
+            if(pesquisa_status!=-1 && pesquisa_status!=-2 && (!(ler_arquivo(&rel_func,contador))))
             {
                 //exibir dados    -funcionando, basta fazer aqui a implementação
 
                 //aqui os printf para exibir os dados da struct
                 printf("\n\nExibe dados");
 
-                //exibir de acordo com o enter do usuário, como se estivesse vendo logs.
+                //exibir de acordo com o enter do usuário, como se estivesse vendo logs. aqui ou dentro do do{}while;
 
-                return 0;
+                return 0; //para voltar ao menu
 
 
             }
@@ -35,6 +37,7 @@ void relatorio_geral()
                 if(contador==0) //tratamento para erro.
                 {
                     printf("\n\nInfelizmente não foi possível acessar o relatório!\n\n");
+                    printf("Verifique se existe algum cadastro efetivado!\n\n\n");
                     printf("\n\n\t\tDeseja tentar novamente? (s ou n): ");
                     fflush(stdin);
 
@@ -96,7 +99,7 @@ void relatorio_individual(int rel_posicao)
 
 inline int existe_posicao(int posicao) //verifica se existe a posicao no arquivo
 {
-    int temp_posicao_file;
+    int temp_posicao_file,temp_codigo_file;
 
     FILE *arq=fopen("data\\codigo.txt", "r");
 
@@ -106,16 +109,17 @@ inline int existe_posicao(int posicao) //verifica se existe a posicao no arquivo
     }
     else
     {
-        fscanf(arq,"%d %d \n", &temp_posicao_file);
-        if(temp_posicao_file==posicao)
+        while(!feof(arq))
         {
-            fclose(arq);
-            return 0;
+            fscanf(arq,"%d %d \n", &temp_posicao_file, &temp_codigo_file);
+
+            if(temp_posicao_file==posicao)
+            {
+                fclose(arq);
+                return 0;
+            }
         }
-        else
-        {
-            fclose(arq);
-            return -1;
-        }
+        fclose(arq);
+        return -1;
     }
 }
