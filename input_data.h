@@ -2,6 +2,7 @@
 
 void entrada_dados(struct funcionario *func_input)
 {
+    setlocale(LC_ALL,"Portuguese");
 
     do{
         system("cls");

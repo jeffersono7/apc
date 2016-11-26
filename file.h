@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include <unistd.h>
 #include <time.h>
 #include <string.h>
 #include "struct.h"
+#include <locale.h>
 //#include <thread>
 
 //file.h
@@ -206,6 +206,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
         }
     }
     temp_posicao=0;
+    int cont_troca=0;
 
     //table nome
     while(!(feof(arq_nome))) //armazenar no lugar do espaço "_"
@@ -213,10 +214,19 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
         fscanf(arq_nome,"%d %s \n",&temp_posicao, func_ler->nome);
         if(temp_posicao==posicao)
         {
+            for(cont_troca=0;cont_troca<30;cont_troca++) // troca '_' por espaço
+            {
+                if(func_ler->nome[cont_troca]=='_')
+                {
+                    func_ler->nome[cont_troca]==' ';
+                }
+            }
             break;
         }
     }
     temp_posicao=0;
+
+
 
     //table idade
     while(!feof(arq_idade))
