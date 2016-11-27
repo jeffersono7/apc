@@ -7,8 +7,6 @@ void relatorio_geral()
     //status=abre_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario,"r");
     //status bool
 
-    setlocale(LC_ALL,"Portuguese");
-
     struct funcionario rel_func;
 
     int contador;//para for abaixo
@@ -123,8 +121,6 @@ void relatorio_geral()
 void relatorio_individual(int rel_posicao)
 // precisa abrir todos os arquivos de tabelas, use função.
 {
-    setlocale(LC_ALL,"Portuguese");
-
     struct funcionario rel_func;
 
     do

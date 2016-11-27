@@ -23,7 +23,7 @@ inline int existe_posicao(int); //verifica se existe no arquivo aquela posicao n
 int main()
 {
     //configura utf-8
-    setlocale(LC_ALL,"portuguese");
+    setlocale(LC_ALL,"");
 
     int opcao;
     struct funcionario entrada_funcionario;
