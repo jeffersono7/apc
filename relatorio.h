@@ -51,7 +51,7 @@ void relatorio_geral()
                         printf("Horário de entrada:        %dh%d\n",rel_func.hrEntrada.hora,rel_func.hrEntrada.minuto);
                         printf("Horário de saída:          %dh%d\n",rel_func.hrSaida.hora,rel_func.hrSaida.minuto);
                         printf("Quantidade de dependentes: %d\n",rel_func.dependentes);
-                        printf("Horas Extras:                %d horas\n",rel_func.horasExtras);
+                        printf("Horas Extras:              %d horas\n",rel_func.horasExtras);
                         printf("Salário:                   %0.2f\n",rel_func.salario);
                         printf("\n\nDigite ENTER para continuar a exibiçao: ");
                         fflush(stdin);
@@ -146,7 +146,7 @@ void relatorio_individual(int rel_posicao)
                 printf("Horário de entrada:        %dh%d\n",rel_func.hrEntrada.hora,rel_func.hrEntrada.minuto);
                 printf("Horário de saída:          %dh%d\n",rel_func.hrSaida.hora,rel_func.hrSaida.minuto);
                 printf("Quantidade de dependentes: %d\n",rel_func.dependentes);
-                printf("Horas Extras:                %d horas\n",rel_func.horasExtras);
+                printf("Horas Extras:              %d horas\n",rel_func.horasExtras);
                 printf("Salário:                   %0.2f\n",rel_func.salario);
                 printf("\n\n");
 

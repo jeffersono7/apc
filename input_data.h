@@ -53,8 +53,16 @@ void entrada_dados(struct funcionario *func_input)
         scanf("%d", &func_input->horasExtras);
 
         fflush(stdin);
-        printf("\nInsira o seu salário: ");
-        scanf("%f", &func_input->salario);
+        //printf("\nInsira o seu salário: ");
+        //scanf("%f", &func_input->salario);
+        if(func_input->nivel=='b')
+            func_input->salario=800.00+(50*func_input->horasExtras)+(5*func_input->dependentes);
+        else if(func_input->nivel=='m')
+            func_input->salario=1200.00+(80*func_input->horasExtras)+(8*func_input->dependentes);
+        else if(func_input->nivel=='s')
+            func_input->salario=1600.00+(100*func_input->horasExtras)+(10*func_input->dependentes);
+        else
+            func_input->salario=0;
 
         // escreve no arquivo
         int status=escreve_arquivo(*func_input);
