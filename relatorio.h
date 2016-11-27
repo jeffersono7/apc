@@ -10,9 +10,10 @@ void relatorio_geral()
     setlocale(LC_ALL,"Portuguese");
 
     struct funcionario rel_func;
+
     int contador;//para for abaixo
     int pesquisa_status=0;
-    char nivel_pesquisa; // para receber nivel desejado
+    char nivel_pesquisa='\0'; // para receber nivel desejado
 
     system("cls"); //limpa tela
 
@@ -34,9 +35,8 @@ void relatorio_geral()
                 //aqui os printf para exibir os dados da struct
 
                 //inicio exibição
-                if((contador%1)==0)
+                if(1)//(contador%1)==0 para futurar modificações
                 {
-                    //Exibe dados de 2 em 2 cadastros.
                     if(rel_func.nivel==nivel_pesquisa)
                     {
                         system("cls");
@@ -74,7 +74,8 @@ void relatorio_geral()
                             printf("Quantidade de dependentes: %d\n",rel_func.dependentes);
                             printf("Horas Extras:                %d horas\n",rel_func.horasExtras);
                             printf("Salário:                   %0.2f\n",rel_func.salario);
-                            printf("\n\nDigite ENTER para continuar a exibiçao: ");
+
+                            printf("\n\nDigite ENTER para exibir proximo cadastro: ");
                             fflush(stdin);
                             getchar();
                         }else
@@ -85,34 +86,33 @@ void relatorio_geral()
                             getchar();
                         }
                     }
-
+                }
                 //exibir de acordo com o enter do usuário, como se estivesse vendo logs. aqui ou dentro do do{}while;
 
-                return 0; //para voltar ao menu
+                //return 0; //para voltar ao menu
+            }
+            else
+            {
+                if(contador==1) //tratamento para erro.
+                {
+                    printf("\n\nInfelizmente não foi possível acessar o relatório!\n\n");
+                    printf("Verifique se existe algum cadastro efetivado!\n\n\n");
+                    printf("\n\n\t\tDeseja tentar novamente? (s ou n): ");
+                    fflush(stdin);
+
+                    if(getchar()=='n')
+                        return 0;
+                    else
+                        break;
                 }
                 else
                 {
-                    if(contador==0) //tratamento para erro.
-                    {
-                        printf("\n\nInfelizmente não foi possível acessar o relatório!\n\n");
-                        printf("Verifique se existe algum cadastro efetivado!\n\n\n");
-                        printf("\n\n\t\tDeseja tentar novamente? (s ou n): ");
-                        fflush(stdin);
-
-                        if(getchar()=='n')
-                            return 0;
-                        else
-                            break;
-                    }
-                    else
-                    {
-                        printf("\n\n\n\n------------------------------------------------------------");
-                        printf("\n\nFIM DO RELATÓRIO!");
-                        printf("\n\nPressione qualquer tecla para voltar ao menu...");
-                        fflush(stdin);
-                        getchar();
-
-                    }
+                    printf("\n\n\n\n------------------------------------------------------------");
+                    printf("\n\nFIM DO RELATÓRIO!");
+                    printf("\n\nPressione qualquer tecla para voltar ao menu...");
+                    fflush(stdin);
+                    getchar();
+                    return 0;
                 }
             }
         }

@@ -209,7 +209,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
     int cont_troca=0;
 
     //table nome
-    while(!(feof(arq_nome))) //armazenar no lugar do espaço "_"
+    while(!(feof(arq_nome))) //armazenar no lugar espaço no lugar de "_"
     {
         fscanf(arq_nome,"%d %s \n",&temp_posicao, func_ler->nome);
         if(temp_posicao==posicao)
@@ -218,7 +218,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
             {
                 if(func_ler->nome[cont_troca]=='_')
                 {
-                    func_ler->nome[cont_troca]==' ';
+                    func_ler->nome[cont_troca]=='+'; //debug
                 }
             }
             break;
