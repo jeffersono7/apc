@@ -1,7 +1,7 @@
 #include "input_data.h"
 
-void relatorio_geral()
-// precisa abrir todos os arquivos de tabelas, use funÃ§Ã£o.
+inline void relatorio_geral()
+// precisa abrir todos os arquivos de tabelas, use função.
 {
     //FILE *arq_codigo,*arq_nome,*arq_idade,*arq_dependentes,*arq_nivel,*arq_hrEntrada,*arq_hrSaida,*arq_horasExtras,*arq_salario;
     //status=abre_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario,"r");
@@ -11,12 +11,12 @@ void relatorio_geral()
 
     int contador;//para for abaixo
     int pesquisa_status=0;
-    char nivel_pesquisa='\0'; // para receber nivel desejado
+    char nivel_pesquisa='\0'; // para receber nível desejado
 
     system("cls"); //limpa tela
 
     //captura nivel dos cadastros a ser exibidos
-    printf("\nDigite o nivel que deseja exibir o relatorio: ");
+    printf("\nDigite o nível que deseja exibir o relatório (b,m,s): ");
     fflush(stdin);
     scanf("%c", &nivel_pesquisa);
 
@@ -24,34 +24,34 @@ void relatorio_geral()
     {
         for(contador=1;;contador++)
         {
-            pesquisa_status=existe_posicao(contador);//-1:falha ao abrir -2:nao existe aquela posiÃ§Ã£o no arquivo
+            pesquisa_status=existe_posicao(contador);//-1:falha ao abrir -2:nao existe aquela posição no arquivo
 
             if(pesquisa_status!=-1 && pesquisa_status!=-2 && (!(ler_arquivo(&rel_func,contador))))
             {
-                //exibir dados    -funcionando, basta fazer aqui a implementaÃ§Ã£o
+                //exibir dados    -funcionando, basta fazer aqui a implementação
 
                 //aqui os printf para exibir os dados da struct
 
-                //inicio exibiÃ§Ã£o
-                if(1)//(contador%1)==0 para futurar modificaÃ§Ãµes
+                //inicio exibição
+                if(1)//(contador%1)==0 para futuras modificações
                 {
                     if(rel_func.nivel==nivel_pesquisa)
                     {
                         system("cls");
                         printf("\n####################################");
                         printf("\n####################################");
-                        printf("\n#######   Dados Do UsuÃ¡rio   ######");
+                        printf("\n#######   Dados Do Usuário   ######");
                         printf("\n####################################");
                         printf("\n####################################\n\n");
                         printf("Nome:                      %s\n",rel_func.nome);
                         printf("Idade:                     %d\/%d\/%d\n",rel_func.idade.dia,rel_func.idade.mes,rel_func.idade.ano);
-                        printf("NÃ­vel de Escolaridade:     %c\n",rel_func.nivel);
-                        printf("HorÃ¡rio de entrada:        %dh%d\n",rel_func.hrEntrada.hora,rel_func.hrEntrada.minuto);
-                        printf("HorÃ¡rio de saÃ­da:          %dh%d\n",rel_func.hrSaida.hora,rel_func.hrSaida.minuto);
+                        printf("Nível de Escolaridade:     %c\n",rel_func.nivel);
+                        printf("Horário de entrada:        %dh%d\n",rel_func.hrEntrada.hora,rel_func.hrEntrada.minuto);
+                        printf("Horário de saÃ­da:          %dh%d\n",rel_func.hrSaida.hora,rel_func.hrSaida.minuto);
                         printf("Quantidade de dependentes: %d\n",rel_func.dependentes);
                         printf("Horas Extras:              %d horas\n",rel_func.horasExtras);
-                        printf("SalÃ¡rio:                   %0.2f\n",rel_func.salario);
-                        printf("\n\nDigite ENTER para continuar a exibiÃ§ao: ");
+                        printf("Salário:                   %0.2f\n",rel_func.salario);
+                        printf("\n\nDigite ENTER para exibir próximo cadastro: ");
                         fflush(stdin);
                         getchar();
                     }else
@@ -61,31 +61,44 @@ void relatorio_geral()
                             system("cls");
                             printf("\n####################################");
                             printf("\n####################################");
-                            printf("\n#######   Dados Do UsuÃ¡rio   ######");
+                            printf("\n#######   Dados Do Usuário   #######");
                             printf("\n####################################");
                             printf("\n####################################\n\n");
                             printf("Nome:                      %s\n",rel_func.nome);
                             printf("Idade:                     %d\/%d\/%d\n",rel_func.idade.dia,rel_func.idade.mes,rel_func.idade.ano);
-                            printf("NÃ­vel de Escolaridade:     %c\n",rel_func.nivel);
-                            printf("HorÃ¡rio de entrada:        %dh%d\n",rel_func.hrEntrada.hora,rel_func.hrEntrada.minuto);
-                            printf("HorÃ¡rio de saÃ­da:          %dh%d\n",rel_func.hrSaida.hora,rel_func.hrSaida.minuto);
+                            printf("Nível de Escolaridade:     %c\n",rel_func.nivel);
+                            printf("Horário de entrada:        %dh%d\n",rel_func.hrEntrada.hora,rel_func.hrEntrada.minuto);
+                            printf("Horário de saí­da:          %dh%d\n",rel_func.hrSaida.hora,rel_func.hrSaida.minuto);
                             printf("Quantidade de dependentes: %d\n",rel_func.dependentes);
                             printf("Horas Extras:                %d horas\n",rel_func.horasExtras);
-                            printf("SalÃ¡rio:                   %0.2f\n",rel_func.salario);
+                            printf("Salário:                   %0.2f\n",rel_func.salario);
 
                             printf("\n\nDigite ENTER para exibir proximo cadastro: ");
                             fflush(stdin);
                             getchar();
                         }else
                         {
-                            system("cls");
-                            printf("\n\nNivel invÃ¡lido\n\nVoltando...");
-                            fflush(stdin);
-                            getchar();
+                            if(nivel_pesquisa=='s' || nivel_pesquisa=='m' || nivel_pesquisa=='b')
+                            {
+                                system("cls");
+                                printf("\n\nNenhum cadastro registrado com esse nível!");
+                                printf("\n\n\nPressione ENTER para voltar ao menu...");
+                                fflush(stdin);
+                                getchar();
+                                return 0;
+                            }
+                            else
+                            {
+                                system("cls");
+                                printf("\n\nNivel inválido\n\n\nEnter para voltar ao menu...");
+                                fflush(stdin);
+                                getchar();
+                                return 0;
+                            }
                         }
                     }
                 }
-                //exibir de acordo com o enter do usuÃ¡rio, como se estivesse vendo logs. aqui ou dentro do do{}while;
+                //exibir de acordo com o enter do usuário, como se estivesse vendo logs. aqui ou dentro do do{}while;
 
                 //return 0; //para voltar ao menu
             }
@@ -93,8 +106,8 @@ void relatorio_geral()
             {
                 if(contador==1) //tratamento para erro.
                 {
-                    printf("\n\nInfelizmente nÃ£o foi possÃ­vel acessar o relatÃ³rio!\n\n");
-                    printf("Verifique se existe algum cadastro efetivado!\n\n\n");
+                    printf("\n\nInfelizmente não foi possível acessar o relatório!\n\n");
+                    printf("Verifique se existe algum cadastro efetivado!\n\n\n\n");
                     printf("\n\n\t\tDeseja tentar novamente? (s ou n): ");
                     fflush(stdin);
 
@@ -106,7 +119,7 @@ void relatorio_geral()
                 else
                 {
                     printf("\n\n\n\n------------------------------------------------------------");
-                    printf("\n\nFIM DO RELATÃ“RIO!");
+                    printf("\n\nFIM DO RELATÓRIO!");
                     printf("\n\nPressione qualquer tecla para voltar ao menu...");
                     fflush(stdin);
                     getchar();
@@ -118,8 +131,8 @@ void relatorio_geral()
 }
 
 
-void relatorio_individual(int rel_posicao)
-// precisa abrir todos os arquivos de tabelas, use funÃ§Ã£o.
+inline void relatorio_individual(int rel_posicao)
+// precisa abrir todos os arquivos de tabelas, use função.
 {
     struct funcionario rel_func;
 
@@ -127,23 +140,23 @@ void relatorio_individual(int rel_posicao)
     {
         if(!(ler_arquivo(&rel_func,rel_posicao)))
         {
-            //exibir dados    -funcionando, basta fazer aqui a implementaÃ§Ã£o
+            //exibir dados    -funcionando, basta fazer aqui a implementação
 
             //aqui os printf para exibir os dados da struct
 
                 printf("\n####################################");
                 printf("\n####################################");
-                printf("\n#######   Dados Do UsuÃ¡rio   ######");
+                printf("\n#######   Dados Do Usuário   #######");
                 printf("\n####################################");
                 printf("\n####################################\n\n");
                 printf("Nome:                      %s\n",rel_func.nome);
                 printf("Idade:                     %d\/%d\/%d\n",rel_func.idade.dia,rel_func.idade.mes,rel_func.idade.ano);
-                printf("NÃ­vel de Escolaridade:     %c\n",rel_func.nivel);
-                printf("HorÃ¡rio de entrada:        %dh%d\n",rel_func.hrEntrada.hora,rel_func.hrEntrada.minuto);
-                printf("HorÃ¡rio de saÃ­da:          %dh%d\n",rel_func.hrSaida.hora,rel_func.hrSaida.minuto);
+                printf("Ní­vel de Escolaridade:     %c\n",rel_func.nivel);
+                printf("Horário de entrada:        %dh%d\n",rel_func.hrEntrada.hora,rel_func.hrEntrada.minuto);
+                printf("Horário de saí­da:          %dh%d\n",rel_func.hrSaida.hora,rel_func.hrSaida.minuto);
                 printf("Quantidade de dependentes: %d\n",rel_func.dependentes);
                 printf("Horas Extras:              %d horas\n",rel_func.horasExtras);
-                printf("SalÃ¡rio:                   %0.2f\n",rel_func.salario);
+                printf("Salário:                   %0.2f\n",rel_func.salario);
                 printf("\n\n");
 
             fflush(stdin);
@@ -151,13 +164,13 @@ void relatorio_individual(int rel_posicao)
             //fim_debug
 
 
-            //exibir de acordo com o enter do usuÃ¡rio, como se estivesse vendo logs.
+            //exibir de acordo com o enter do usuário, como se estivesse vendo logs.
 
             break;
         }
         else
         {
-            printf("NÃ£o foi possÃ­vel acessar o relatÃ³rio!\n\n");
+            printf("Não foi possível acessar o relatório!\n\n");
             printf("\n\n\t\tDeseja tentar novamente? (s ou n");
 
             if(getchar()=='n')
@@ -169,8 +182,6 @@ void relatorio_individual(int rel_posicao)
 
 inline int existe_posicao(int posicao) //verifica se existe a posicao no arquivo
 {
-
-    setlocale(LC_ALL,"portuguese");
 
     int temp_posicao_file,temp_codigo_file;
 

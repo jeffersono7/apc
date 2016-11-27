@@ -14,7 +14,7 @@
 
 //long int posicao=0;
 
-int abre_arquivo(FILE **arq_codigo,FILE **arq_nome,FILE **arq_idade,FILE **arq_dependentes,FILE **arq_nivel,FILE **arq_hrEntrada,FILE **arq_hrSaida,
+inline int abre_arquivo(FILE **arq_codigo,FILE **arq_nome,FILE **arq_idade,FILE **arq_dependentes,FILE **arq_nivel,FILE **arq_hrEntrada,FILE **arq_hrSaida,
                 FILE **arq_horasExtras,FILE **arq_salario, char modo[]) //return 0 para sucesso, >0 para falha; modo=a-append,w-write,r-read
 
 {
@@ -50,7 +50,7 @@ int abre_arquivo(FILE **arq_codigo,FILE **arq_nome,FILE **arq_idade,FILE **arq_d
     return 1; //erro de abertura de arquivo
 }
 
-int fecha_arquivo(FILE *arq_codigo,FILE*arq_nome,FILE *arq_idade,FILE *arq_dependentes,FILE *arq_nivel,FILE *arq_hrSaida,FILE *arq_hrEntrada,
+inline int fecha_arquivo(FILE *arq_codigo,FILE*arq_nome,FILE *arq_idade,FILE *arq_dependentes,FILE *arq_nivel,FILE *arq_hrSaida,FILE *arq_hrEntrada,
                 FILE *arq_horasExtras,FILE *arq_salario) //return 0 para sucesso, >0 para falha
 {
     fclose(arq_codigo);
@@ -66,17 +66,17 @@ int fecha_arquivo(FILE *arq_codigo,FILE*arq_nome,FILE *arq_idade,FILE *arq_depen
 
 }
 
-int escreve_arquivo(struct funcionario func1)  //desenvolver
+inline int escreve_arquivo(struct funcionario func1)  //desenvolver
 
 // um arquivo para cada elemento da struct(cada tabela) e um para armazenamento de chave primaria
 // banco de dados do tipo chave-valor
-// funÃ§Ãµes como pesquisa vai buscar nas tabelas inserindo a chave primaria do "dado".
+// funções como pesquisa vai buscar nas tabelas inserindo a chave primaria do "dado".
 {
     int status;
     int posicao;
     FILE *arq_codigo=0,*arq_nome=0,*arq_idade=0,*arq_dependentes=0,*arq_nivel=0,*arq_hrSaida=0,*arq_hrEntrada=0,*arq_horasExtras=0,*arq_salario=0; //desordenado.
 
-    //Procura posiÃ§Ã£o vazia no arquivo
+    //Procura posição vazia no arquivo
     posicao=procura_posicao();
 
     if(posicao<0)
@@ -91,11 +91,11 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
     }
 
     // Abre arquivo usando thread
-    //std::thread first (status=abre_arquivo, arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a'); // Verificar se ordem de flags estÃ¡ certa.
+    //std::thread first (status=abre_arquivo, arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario,'a'); // Verificar se ordem de flags estão certas.
     status=abre_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario,"a");
 
 
-    //variavel para o for, porque windows Ã© outro nÃ­vel #g++
+    //variavel para o for, porque windows é outro nível #g++
     int cont=0;
 
     for(cont=0;;cont++) // verifica se abriu.
@@ -108,7 +108,7 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
         if((cont>100000) && status != 0)
         {
             printf("\nErro ao abrir arquivo!\n");
-            printf("\n\nTente novamento a operaÃ§Ã£o...");
+            printf("\n\nTente novamente a operação...");
             getchar();
             fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
             return 1; //erro ao abrir arquivo!
@@ -120,7 +120,7 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
     // Escreve no arquivo.
 
     //table codigo
-            fprintf(arq_codigo, "%d %d \n",posicao,func1.codigo);  //posicao Ã© linha. terminar
+            fprintf(arq_codigo, "%d %d \n",posicao,func1.codigo);  //posicao é linha. terminar
 
     //table nome
             fprintf(arq_nome, "%d %s \n",posicao,func1.nome); // ver %s para string func1.nome
@@ -131,8 +131,8 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
     //table dependentes
             fprintf(arq_dependentes,"%d %d \n",posicao,func1.dependentes);
 
-    //table nÃ­vel
-            fprintf(arq_nivel,"%d %c \n",posicao,func1.nivel); //verificar isso de posicao na funÃ§Ã£o.
+    //table nível
+            fprintf(arq_nivel,"%d %c \n",posicao,func1.nivel); //verificar isso de posicao na função.
 
     //table hrEntrada
             fprintf(arq_hrEntrada,"%d %d %d \n",posicao,func1.hrEntrada.hora, func1.hrEntrada.minuto);
@@ -150,14 +150,14 @@ int escreve_arquivo(struct funcionario func1)  //desenvolver
 
     //fecha arquivo
     fecha_arquivo(arq_codigo,arq_nome,arq_idade,arq_dependentes,arq_nivel,arq_hrEntrada,arq_hrSaida,arq_horasExtras,arq_salario);
-    return 0; //operaÃ§Ã£o realizada com sucesso!
+    return 0; //operação realizada com sucesso!
 }
 
 //--------------------------------------------------------
 
 
 
-int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigir erro igual do escre_arquivo fecha ao abrir arquivo tbm
+inline int ler_arquivo(struct funcionario *func_ler, int posicao)
 {
     //Abre arquivo usando thread
     int status;
@@ -182,7 +182,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
         if((cont>500) && (status != 0))
         {
             printf("\nErro ao abrir arquivo!\n");
-            printf("\n\nTente novamento a operaÃ§Ã£o...\n");
+            printf("\n\nTente novamente a operação...\n");
 
             //fecha_arquivo(&arq_codigo,&arq_nome,&arq_idade,&arq_dependentes,&arq_nivel,&arq_hrEntrada,&arq_hrSaida,&arq_horasExtras,&arq_salario);
             return 1; //erro ao abrir arquivo!
@@ -193,7 +193,7 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
 
     // desenvolver, capturar nos arquivos os dados pedidos e gravar em um objeto struct temporario (temp_ler)
 
-    int temp_posicao;//para armazenar posiÃ§Ã£o temporaria capturada no arquivo
+    int temp_posicao;//para armazenar posição temporária capturada no arquivo
 
     //table codigo
     while(!(feof(arq_codigo)))
@@ -209,16 +209,16 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
     int cont_troca=0;
 
     //table nome
-    while(!(feof(arq_nome))) //armazenar no lugar espaÃ§o no lugar de "_"
+    while(!(feof(arq_nome))) //armazenar espaço no lugar de "_"
     {
         fscanf(arq_nome,"%d %s \n",&temp_posicao, func_ler->nome);
         if(temp_posicao==posicao)
         {
-            for(cont_troca=0;cont_troca<30;cont_troca++) // troca '_' por espaÃ§o
+            for(cont_troca=0;cont_troca<30;cont_troca++) // troca '_' por espaço
             {
                 if(func_ler->nome[cont_troca]=='_')
                 {
-                    func_ler->nome[cont_troca]=='+'; //debug
+                    func_ler->nome[cont_troca]=' ';
                 }
             }
             break;
@@ -312,10 +312,10 @@ int ler_arquivo(struct funcionario *func_ler, int posicao) //desenvolver corrigi
 
     return 0; //0-sucesso
 
-    // fim da funÃ§Ã£o -----------------------------------
+    // fim da função -----------------------------------
 }
 
-int procura_posicao()
+inline int procura_posicao()
 {
     int temp_posicao_file=0,temp_posicao_arm=0;
 

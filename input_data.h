@@ -1,19 +1,19 @@
 #include "file.h"
 
-void entrada_dados(struct funcionario *func_input)
+inline void entrada_dados(struct funcionario *func_input)
 {
     do{
         system("cls");
 
         fflush(stdin);
-        printf("\nInsira o cÃ³digo do funcionÃ¡rio: ");
+        printf("\nInsira o código do funcionário: ");
         scanf("%d", &func_input->codigo);  //parou aqui, falta corrigir erros e bugs
 
         fflush(stdin);
-        printf("\nDigite o nome do funcionÃ¡rio: ");
+        printf("\nDigite o nome do funcionário: ");
         gets(func_input->nome);
         int espaco;
-        for(espaco=0;espaco<30;espaco++) //troca espaÃ§o por '_'
+        for(espaco=0;espaco<30;espaco++) //troca espaço por '_'
         {
             if(func_input->nome[espaco]==' ')
             {
@@ -32,8 +32,8 @@ void entrada_dados(struct funcionario *func_input)
 
         fflush(stdin);
         printf("\nInsira o seu nÃ­vel (b, m, s)\n");
-        printf("\tb = BÃ¡sico\n");
-        printf("\tm = MÃ©dio\n");
+        printf("\tb = Básico\n");
+        printf("\tm = Médio\n");
         printf("\ts = Superior\n");
         gets(&func_input->nivel);
 
@@ -50,7 +50,7 @@ void entrada_dados(struct funcionario *func_input)
         scanf("%d", &func_input->horasExtras);
 
         fflush(stdin);
-        //printf("\nInsira o seu salÃ¡rio: ");
+        //printf("\nInsira o seu salário: ");
         //scanf("%f", &func_input->salario);
         if(func_input->nivel=='b')
             func_input->salario=800.00+(50*func_input->horasExtras)+(5*func_input->dependentes);
@@ -90,7 +90,7 @@ void entrada_dados(struct funcionario *func_input)
                         getchar();
                     }else
                     {
-                        printf("\n\nNÃ£o foi possÃ­vel gravar os dados. Pressione qualquer tecla para retornar ao menu...\n\n");
+                        printf("\n\nNão foi possí­vel gravar os dados. Pressione qualquer tecla para retornar ao menu...\n\n");
                         fflush(stdin);
                         getchar();
                         break;
@@ -99,7 +99,7 @@ void entrada_dados(struct funcionario *func_input)
             }
         }
 
-        printf("\n\n\n\n\t\tDESEJA ADICIONAR OUTRO FUNCIONARIO? [s/n]: ");
+        printf("\n\n\n\n\t\tDESEJA ADICIONAR OUTRO FUNCIONÁRIO? [s/n]: ");
         fflush(stdin);
         if(getchar()=='s')
             system("cls");

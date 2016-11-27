@@ -138,7 +138,7 @@ int main()
 
 
 //---------------------------------------------------------------
-int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois usar ler_arquivo #desenvolver
+inline int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois usar ler_arquivo #desenvolver
 //caso nao encontrado, retorna -1, e 0 para retornar ao menu
 //retorna -2 caso não consiga abrir arquivo
 //possui erro ao pesquisar nome inexistente --corrigido
@@ -220,7 +220,7 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
     }else if(opcao==2)
     {
         system("cls");
-        printf("Digite o nome do funcionário: ");
+        printf("Digite o nome completo do funcionário: ");
         //fprintf(stdin,"%s",&temp_nome);
         fflush(stdin);
         gets(temp_nome);
@@ -285,7 +285,7 @@ int pesquisa() //retorna chave primaria do elemento encontrado,para entao depois
 
 
 // menu()
-int menu()
+inline int menu()
 {
     int menu;
 
@@ -319,7 +319,7 @@ int menu()
     }while(1);
 }
 
-void cabecalho()
+inline void cabecalho()
 {
     system("cls");
 	system("color 02");
